@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "bienestar",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
