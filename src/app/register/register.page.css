@@ -1,0 +1,11 @@
+
+ion-content{
+  text-align: center;
+}
+
+ion-item{
+  margin: 20px;
+}
+#columnas{
+  display: flex;
+}

@@ -1,0 +1,11 @@
+#header{
+  --background: #16372C;
+  --color: white;
+  --min-height: 60px;
+  --padding-top: 30px;
+  --padding-start: 150px;
+  --padding-bottom: 30px;
+}
+#img_header{
+  width: 90px;
+}

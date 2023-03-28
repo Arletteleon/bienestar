@@ -1,0 +1,45 @@
+<ion-content >
+  <div id="columnas" >
+    <div id="columna">
+      <ion-item fill="outline" style="align-content: center">
+        <ion-label position="floating">Nombre Completo</ion-label>
+        <ion-input placeholder="Enter text"></ion-input>
+      </ion-item>
+      <ion-item fill="outline">
+        <ion-label position="floating">CUPO</ion-label>
+        <ion-input placeholder="Enter text"></ion-input>
+      </ion-item>
+      <ion-item fill="outline">
+        <ion-label position="floating">RFC</ion-label>
+        <ion-input placeholder="Enter text"></ion-input>
+      </ion-item>
+.
+      <ion-label position="floating">CURP</ion-label>
+        <ion-input placeholder="Enter text"></ion-input>
+      </ion-item>
+      <ion-item fill="outline">
+        <ion-label position="floating">Estado</ion-label>
+        <ion-input placeholder="Enter text"></ion-input>
+      </ion-item>
+    </div>
+    <div style="margin: 0 auto">
+      <ion-item fill="outline">
+        <ion-label position="floating">Puesto</ion-label>
+        <ion-input placeholder="Enter text"></ion-input>
+      </ion-item>
+      <ion-item fill="outline">
+        <ion-label position="floating">Contratación</ion-label>
+        <ion-input placeholder="Enter text"></ion-input>
+      </ion-item>
+      <ion-item fill="outline">
+        <ion-label position="floating">Fecha de Ingreso</ion-label>
+        <ion-input type="date" placeholder="Enter text"></ion-input>
+      </ion-item>
+    </div>
+  </div>
+  <ion-button (click)="presentAlert()">Registrar</ion-button>
+  <p>{{ handlerMessage }}</p>
+  <p>{{ roleMessage }}</p>
+  <app-footer></app-footer>
+</ion-content>
+

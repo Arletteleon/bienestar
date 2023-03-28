@@ -1,0 +1,16 @@
+#footer{
+  --background: #16372C;
+  --color: white;
+  --min-height: 150px;
+  --padding-start: 150px;
+  --padding-top: 20px;
+}
+#img_footer{
+  width: 300px;
+}
+#div{
+  display: flex;
+}
+#address{
+  padding: 30px;
+}
