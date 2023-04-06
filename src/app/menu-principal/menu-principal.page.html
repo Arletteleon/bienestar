@@ -5,12 +5,12 @@
 <ion-content>
   <ion-tabs>
     <ion-tab-bar slot="top">
-      <ion-tab-button tab="register">
+      <ion-tab-button (click)="registerPopover($event)">
         <ion-label>Registros</ion-label>
       </ion-tab-button>
 
-      <ion-tab-button tab="tab2">
-        <ion-label>Excepciones</ion-label>
+      <ion-tab-button (click)="permissionsPopover($event)">
+        <ion-label>Opciones</ion-label>
       </ion-tab-button>
 
       <ion-tab-button tab="tab3">

@@ -5,7 +5,12 @@ ion-content{
 
 ion-item{
   margin: 20px;
+  width: 500px;
 }
 #columnas{
-  display: flex;
+  display: flex; justify-content: center;
+}
+
+#labelData{
+  padding-bottom: 90px;
 }

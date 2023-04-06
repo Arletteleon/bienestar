@@ -1,13 +1,30 @@
-ion-toolbar{
-  --background: #21503F;
-  --color: white;
-  --padding-start: 10px;
-}
+
 ion-tab-bar{
   --background: #21503F;
   --color: white;
+  --ion-color-primary: #BF8F54;
 }
-div{
-  display: flex;
-  margin: 40px;
+
+.item{
+  background-color: transparent;
+  color: var(--ion-color-dark);
+  --border-color: transparent;
+  --box-shadow: none;
+  --padding-start: 0;
+  --padding-end: 0;
+  --padding-top: 0.5rem;
+  --padding-bottom: 0.5rem;
+  --padding-bottom-md: 0.75rem;
+  --padding-top-md: 0.75rem;
+  --padding-start-md: 1.5rem;
+  --padding-end-md: 1.5rem;
+  --ion-item-background-hover: transparent;
+  --ion-item-background-activated: transparent;
+  --ion-item-text-transform: none;
+  text-transform: none;
+  font-size: 1rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
