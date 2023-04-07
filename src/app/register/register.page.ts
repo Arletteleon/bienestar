@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AlertController} from "@ionic/angular";
+import {AngularFireDatabase} from "@angular/fire/compat/database";
+import {InterfaceRegister} from "./interface.register";
 
 @Component({
   selector: 'app-register',
@@ -8,12 +10,21 @@ import {AlertController} from "@ionic/angular";
 })
 export class RegisterPage {
 
-  handlerMessage = '';
-  roleMessage = '';
+  /*handlerMessage = '';
+  roleMessage = '';*/
 
-  constructor(private alertController: AlertController) {}
+  user: InterfaceRegister = { name: '', cupo:'', curp:'',rfc:'', state:'', job:'', hiring:'',dateAdmission:new Date()};
 
-  async presentAlert() {
+
+  constructor(private alertController: AlertController,private db: AngularFireDatabase) {}
+
+
+
+  addRegister(){
+    this.db.list('/users').push(this.user);
+    this.user = { name: '', cupo:'', curp:'',rfc:'', state:'', job:'', hiring:'',dateAdmission:new Date() };
+  }
+  /*async presentAlert() {
     const alert = await this.alertController.create({
       header: 'Alert!',
       buttons: [
@@ -29,6 +40,12 @@ export class RegisterPage {
           role: 'confirm',
           handler: () => {
             this.handlerMessage = 'Alert confirmed';
+
+            this.db.list('Users').push({
+              Name: 'John Doe',
+              Age: 30,
+              email: 'johndoe@email.com'
+            });
           },
         },
       ],
@@ -38,5 +55,5 @@ export class RegisterPage {
 
     const { role } = await alert.onDidDismiss();
     this.roleMessage = `Dismissed with role: ${role}`;
-  }
+  }*/
 }

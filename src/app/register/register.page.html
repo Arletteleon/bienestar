@@ -4,47 +4,54 @@
       Datos del Trabajador
     </ion-label>
   </ion-item>
-  <div id="columnas">
-    <div id="columna">
-      <ion-item fill="outline">
-        <ion-label position="floating">Nombre Completo</ion-label>
-        <ion-input placeholder="Enter text"></ion-input>
-      </ion-item>
-      <ion-item fill="outline">
-        <ion-label position="floating">CUPO</ion-label>
-        <ion-input placeholder="Enter text"></ion-input>
-      </ion-item>
-      <ion-item fill="outline">
-        <ion-label position="floating">RFC</ion-label>
-        <ion-input placeholder="Enter text"></ion-input>
-      </ion-item>
-      <ion-item fill="outline">
-        <ion-label position="floating">CURP</ion-label>
-        <ion-input placeholder="Enter text"></ion-input>
-      </ion-item>
-      <ion-item fill="outline">
-        <ion-label position="floating">Estado</ion-label>
-        <ion-input placeholder="Enter text"></ion-input>
-      </ion-item>
+  <form (ngSubmit)="addRegister()">
+    <div id="columnas">
+      <div>
+        <ion-item fill="outline">
+          <ion-label position="floating">Nombre Completo</ion-label>
+          <ion-input type="text" [(ngModel)]="user.name" name="name" placeholder="Enter text"></ion-input>
+        </ion-item>
+
+        <ion-item fill="outline">
+          <ion-label position="floating">CUPO</ion-label>
+          <ion-input type="number" [(ngModel)]="user.cupo" name="cupo" placeholder="Enter text"></ion-input>
+        </ion-item>
+
+        <ion-item fill="outline">
+          <ion-label position="floating">RFC</ion-label>
+          <ion-input type="text" [(ngModel)]="user.rfc" name="rfc" placeholder="Enter text"></ion-input>
+        </ion-item>
+
+        <ion-item fill="outline">
+          <ion-label position="floating">CURP</ion-label>
+          <ion-input type="text" [(ngModel)]="user.curp" name="curp" placeholder="Enter text"></ion-input>
+        </ion-item>
+
+        <ion-item fill="outline">
+          <ion-label position="floating">Estado</ion-label>
+          <ion-input type="text" [(ngModel)]="user.state" name="state" placeholder="Enter text"></ion-input>
+        </ion-item>
+      </div>
+      <div >
+        <ion-item fill="outline">
+          <ion-label position="floating">Puesto</ion-label>
+          <ion-input type="text" [(ngModel)]="user.job" name="job" placeholder="Enter text"></ion-input>
+        </ion-item>
+
+        <ion-item fill="outline">
+          <ion-label position="floating">Contratación</ion-label>
+          <ion-input type="text" [(ngModel)]="user.hiring" name="hiring" placeholder="Enter text"></ion-input>
+        </ion-item>
+
+        <ion-item fill="outline">
+          <ion-label position="floating">Fecha de Ingreso</ion-label>
+          <ion-input type="date" [(ngModel)]="user.dateAdmission" name="dateAdmission" placeholder="Enter text"></ion-input>
+        </ion-item>
+      </div>
     </div>
-    <div id="columna2">
-      <ion-item fill="outline">
-        <ion-label position="floating">Puesto</ion-label>
-        <ion-input placeholder="Enter text"></ion-input>
-      </ion-item>
-      <ion-item fill="outline">
-        <ion-label position="floating">Contratación</ion-label>
-        <ion-input placeholder="Enter text"></ion-input>
-      </ion-item>
-      <ion-item fill="outline">
-        <ion-label position="floating">Fecha de Ingreso</ion-label>
-        <ion-input type="date" placeholder="Enter text"></ion-input>
-      </ion-item>
-    </div>
-  </div>
-  <ion-button (click)="presentAlert()">Registrar</ion-button>
-  <p>{{ handlerMessage }}</p>
-  <p>{{ roleMessage }}</p>
+    <ion-button type="submit">Registrar</ion-button>
+  </form>
+
   <app-footer></app-footer>
 </ion-content>
 
