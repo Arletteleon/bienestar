@@ -8,13 +8,11 @@ import { RegisterPageRoutingModule } from './register-routing.module';
 
 import { RegisterPage } from './register.page';
 import {FooterPageModule} from "../footer/footer.module";
-import {ExploreContainerComponentModule} from "../explore-container/explore-container.module";
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
-    ExploreContainerComponentModule,
     RegisterPageRoutingModule,
     FooterPageModule
   ],

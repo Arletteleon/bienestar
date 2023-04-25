@@ -1,0 +1,22 @@
+ion-searchbar{
+  --ion-background-color: #F2E8DC;
+}
+ion-content{
+  text-align: center;
+}
+
+ion-item{
+  margin: 20px;
+  width: 500px;
+}
+#columnas{
+  display: flex; justify-content: center;
+}
+
+#labelData{
+  padding-bottom: 90px;
+}
+#contenedor{
+  width: 100%;
+  height: 480px;
+}

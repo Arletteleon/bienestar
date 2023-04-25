@@ -12,12 +12,8 @@ const routes: Routes = [
         loadChildren: () => import('../register/register.module').then( m => m.RegisterPageModule)
       },
       {
-        path: 'tab2',
-        loadChildren: () => import('../tab2/tab2.module').then(m => m.Tab2PageModule)
-      },
-      {
-        path: 'tab3',
-        loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
+        path:'delete',
+        loadChildren: () => import('../delete/delete.module').then( m => m.DeleteModule)
       },
       {
         path: '',

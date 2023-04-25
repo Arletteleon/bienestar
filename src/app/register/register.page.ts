@@ -20,10 +20,30 @@ export class RegisterPage {
 
 
 
-  addRegister(){
-    this.db.list('/users').push(this.user);
-    this.user = { name: '', cupo:'', curp:'',rfc:'', state:'', job:'', hiring:'',dateAdmission:new Date() };
+  async addRegister() {
+    if (this.user.name &&
+      this.user.cupo &&
+      this.user.curp &&
+      this.user.rfc &&
+      this.user.state &&
+      this.user.job &&
+      this.user.hiring &&
+      //validar que la fecha no este vacia
+      this.user.dateAdmission) {
+        this.db.list('/users').push(this.user);
+        this.user = {name: '', cupo: '', curp: '', rfc: '', state: '', job: '', hiring: '', dateAdmission: new Date()};
+    }else {
+      const alert = await this.alertController.create({
+        header: 'Alerta',
+        message: 'Debe rellenar todos los campos',
+        buttons: ['OK'],
+      });
+      await alert.present();
+    }
+
   }
+
+
   /*async presentAlert() {
     const alert = await this.alertController.create({
       header: 'Alert!',

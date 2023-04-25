@@ -7,9 +7,10 @@ import { IonicModule } from '@ionic/angular';
 import { MenuPrincipalPageRoutingModule } from './menu-principal-routing.module';
 
 import { MenuPrincipalPage } from './menu-principal.page';
-import {FooterPageModule} from "../footer/footer.module";
-import {RegisterPageModule} from "../register/register.module";
-import {HeaderPageModule} from "../header/header.module";
+import { FooterPageModule} from "../footer/footer.module";
+import { RegisterPageModule} from "../register/register.module";
+import { DeleteModule} from "../delete/delete.module";
+import { HeaderPageModule} from "../header/header.module";
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import {HeaderPageModule} from "../header/header.module";
     MenuPrincipalPageRoutingModule,
     FooterPageModule,
     RegisterPageModule,
+    DeleteModule,
     HeaderPageModule
   ],
     exports: [
