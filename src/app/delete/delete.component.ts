@@ -1,19 +1,18 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-
-import { AngularFireDatabase } from '@angular/fire/compat/database';
-import {Observable,of} from 'rxjs';
-import { InterfaceRegister} from "../register/interface.register";
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Observable, of } from 'rxjs';
+import { InterfaceRegister } from '../register/interface.register';
 
 @Component({
   selector: 'app-delete',
   templateUrl: './delete.component.html',
   styleUrls: ['./delete.component.css'],
 })
-export class DeleteComponent implements OnInit,OnDestroy {
+export class DeleteComponent implements OnInit, OnDestroy {
+  @ViewChild(DeleteComponent) _GoogleMap: DeleteComponent | undefined;
 
-
-  cupo:string='';
-  users$: Observable<any[]> | undefined;
+  cupo: string = '';
+  users: Observable<any[]> | undefined;
   user: InterfaceRegister = {
     name: '',
     cupo: '',
@@ -25,36 +24,38 @@ export class DeleteComponent implements OnInit,OnDestroy {
     dateAdmission: new Date(),
   };
 
-  constructor(private db: AngularFireDatabase) {
-    this.user.name="gdsgs";
-    this.user.cupo="wfafaw";
-    this.user.curp="";
-    this.user.rfc="";
-    this.user.state="";
-    this.user.job="";
-    this.user.hiring="";
-    this.user.dateAdmission=new Date();
-  }
-  ngOnInit(){
-  }
-  ngOnDestroy() {
-  }
+  constructor(private firestore: AngularFirestore) {}
+
+  ngOnInit() {}
+
+  ngOnDestroy() {}
 
   searchUser() {
-    console.log(this.cupo)
-    this.users$ = this.db.list<InterfaceRegister>(
-      '/users', ref => ref.orderByChild('cupo').equalTo(parseInt(this.cupo))).valueChanges();
-    this.cupo='';
+    console.log(this.cupo);
+    this.firestore
+      .collection<InterfaceRegister>('users', (ref) =>
+        ref.where('cupo', '==', parseInt(this.cupo))
+      )
+      .valueChanges() // Modificación aquí
+      .subscribe((users: InterfaceRegister[]) => { // Modificación aquí
+        this.users = of(users); // Modificación aquí
+      });
+    this.cupo = '';
   }
 
   deleteUser() {
-    this.db.list('/users', ref => ref.orderByChild('cupo').equalTo(parseInt(this.cupo)))
-      .snapshotChanges()
-      .subscribe(users => {
-        users.forEach(user => {
-          this.db.object(`/users/${user.key}`).remove();
-          this.cupo='';
+    this.firestore
+      .collection<InterfaceRegister>('users', (ref) =>
+        ref.where('cupo', '==', parseInt(this.cupo))
+      )
+      .get()
+      .toPromise()
+      .then((querySnapshot) => {
+        // @ts-ignore
+        querySnapshot.forEach((doc) => {
+          doc.ref.delete();
         });
       });
+    this.cupo = '';
   }
 }

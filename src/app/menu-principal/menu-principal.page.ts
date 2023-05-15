@@ -2,7 +2,7 @@
 import { Component } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { PopoverRegisterComponent } from './popover.register.component';
-import {PopoverExceptionComponent} from "./popover-exception.component";
+import { PopoverExceptionComponent} from "./popover-exception.component";
 
 @Component({
   selector: 'app-menu-principal',
@@ -21,6 +21,7 @@ export class MenuPrincipalPage {
       showBackdrop: true,
     });
     return await popover.present();
+    await this.dismissPopover();
   }
 
   async permissionsPopover(ev: any) {
@@ -31,6 +32,7 @@ export class MenuPrincipalPage {
       showBackdrop: true,
     });
     return await popover.present();
+    await this.dismissPopover();
   }
 
   dismissPopover() {

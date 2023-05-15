@@ -13,9 +13,6 @@ ion-item{
   display: flex; justify-content: center;
 }
 
-#labelData{
-  padding-bottom: 90px;
-}
 #contenedor{
   width: 100%;
   height: 480px;

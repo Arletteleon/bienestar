@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {AlertController} from "@ionic/angular";
-import {AngularFireDatabase} from "@angular/fire/compat/database";
-import {InterfaceRegister} from "./interface.register";
+import { Component } from '@angular/core';
+import { AlertController } from '@ionic/angular';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { InterfaceRegister } from './interface.register';
 
 @Component({
   selector: 'app-register',
@@ -10,29 +10,45 @@ import {InterfaceRegister} from "./interface.register";
 })
 export class RegisterPage {
 
-  /*handlerMessage = '';
-  roleMessage = '';*/
+  user: InterfaceRegister = {
+    name: '',
+    cupo: '',
+    curp: '',
+    rfc: '',
+    state: '',
+    job: '',
+    hiring: '',
+    dateAdmission: new Date()
+  };
 
-  user: InterfaceRegister = { name: '', cupo:'', curp:'',rfc:'', state:'', job:'', hiring:'',dateAdmission:new Date()};
-
-
-  constructor(private alertController: AlertController,private db: AngularFireDatabase) {}
-
-
+  constructor(
+    private alertController: AlertController,
+    private firestore: AngularFirestore
+  ) {}
 
   async addRegister() {
-    if (this.user.name &&
+    if (
+      this.user.name &&
       this.user.cupo &&
       this.user.curp &&
       this.user.rfc &&
       this.user.state &&
       this.user.job &&
       this.user.hiring &&
-      //validar que la fecha no este vacia
-      this.user.dateAdmission) {
-        this.db.list('/users').push(this.user);
-        this.user = {name: '', cupo: '', curp: '', rfc: '', state: '', job: '', hiring: '', dateAdmission: new Date()};
-    }else {
+      this.user.dateAdmission
+    ) {
+      await this.firestore.collection('users').add(this.user);
+      this.user = {
+        name: '',
+        cupo: '',
+        curp: '',
+        rfc: '',
+        state: '',
+        job: '',
+        hiring: '',
+        dateAdmission: new Date()
+      };
+    } else {
       const alert = await this.alertController.create({
         header: 'Alerta',
         message: 'Debe rellenar todos los campos',
@@ -40,8 +56,8 @@ export class RegisterPage {
       });
       await alert.present();
     }
-
   }
+
 
 
   /*async presentAlert() {
