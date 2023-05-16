@@ -28,7 +28,7 @@ export class PopoverManualRegisterComponent {
   }
 
   async navigateToDepartureTime() {
-    await this.navController.navigateForward('/menu_princpal/ManualRegistrationExit');
+    await this.navController.navigateForward('/menu_principal/ManualRegistrationExit');
     await this.dismissPopover();
   }
 

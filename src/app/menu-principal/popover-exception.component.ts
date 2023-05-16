@@ -24,7 +24,7 @@ export class PopoverExceptionComponent {
   constructor(private popoverController: PopoverController, public navController: NavController) {}
 
   async navigateToPagePermissions() {
-    await this.navController.navigateForward('/menu_principal/tab2');
+    await this.navController.navigateForward('/menu_principal/CAMBIAR');
     await this.dismissPopover();
   }
 

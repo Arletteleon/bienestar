@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable, of } from 'rxjs';
-import { InterfaceRegister } from '../register/interface.register';
+import { InterfaceRegister } from '../interface/interface.register';
 
 @Component({
   selector: 'app-delete',

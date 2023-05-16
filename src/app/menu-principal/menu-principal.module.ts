@@ -12,6 +12,7 @@ import { RegisterPageModule} from "../register/register.module";
 import { DeleteModule} from "../delete/delete.module";
 import { HeaderPageModule} from "../header/header.module";
 import { ManualRegistrationModule} from "../manual-registration/manual-registration.module";
+import { ManualRegistrationExitModule} from "../manual-registration-exit/manual-registration-exit.module";
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { ManualRegistrationModule} from "../manual-registration/manual-registrat
     RegisterPageModule,
     DeleteModule,
     ManualRegistrationModule,
-    HeaderPageModule
+    HeaderPageModule,
+    ManualRegistrationExitModule
   ],
     exports: [
         MenuPrincipalPage
