@@ -13,10 +13,6 @@ const routes: Routes = [
   {
     path: 'footer',
     loadChildren: () => import('./footer/footer.module').then( m => m.FooterPageModule)
-  },
-  {
-    path: 'register',
-    loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   }
 
 ];

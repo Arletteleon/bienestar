@@ -1,0 +1,18 @@
+<link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Gayathri' rel='stylesheet'>
+
+<ion-content>
+  <div class="digital-clock-container">
+    <div class="digital-clock">
+      <p class="date">{{date}}</p>
+      <p class="clock">{{currentDate}}</p>
+    </div>
+  </div>
+  <ion-item fill="outline">
+    <ion-label position="floating">INGRESE EL CUPO</ion-label>
+    <ion-input type="text" [(ngModel)]="user.cupo" name="cupo" placeholder="Enter text" oninput="this.value = this.value.replace(/[^0-9]/g, '')"></ion-input>
+  </ion-item>
+  <ion-button (click)="registerManual()">Registrar salida
+  </ion-button>
+  <app-footer></app-footer>
+</ion-content>

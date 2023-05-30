@@ -14,3 +14,7 @@ ion-item{
 #labelData{
   padding-bottom: 90px;
 }
+
+ion-alert .my-custom-alert .alert-wrapper {
+  --ion-background-color: red;
+}

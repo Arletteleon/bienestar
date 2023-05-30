@@ -4,7 +4,7 @@
     <ion-searchbar animated="true" placeholder="INGRESE EL CUPO" [(ngModel)]="cupo"></ion-searchbar>
   </div>
   <div id="contenedor">
-<ng-container *ngIf="users$ | async as users">
+<ng-container *ngIf="users | async as users">
 
   <div *ngFor="let user of users">
     <div id="columnas">

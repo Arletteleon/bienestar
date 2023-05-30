@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {AlertController} from "@ionic/angular";
-import {AngularFireDatabase} from "@angular/fire/compat/database";
-import {InterfaceRegister} from "./interface.register";
+import { Component } from '@angular/core';
+import { AlertController } from '@ionic/angular';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { InterfaceRegister } from '../interface/interface.register';
 
 @Component({
   selector: 'app-register',
@@ -10,70 +10,58 @@ import {InterfaceRegister} from "./interface.register";
 })
 export class RegisterPage {
 
-  /*handlerMessage = '';
-  roleMessage = '';*/
+  handlerMessage: string = "";
+  user: InterfaceRegister = {
+    name: '',
+    cupo: '',
+    curp: '',
+    rfc: '',
+    state: '',
+    job: '',
+    hiring: '',
+    dateAdmission: new Date()
+  };
 
-  user: InterfaceRegister = { name: '', cupo:'', curp:'',rfc:'', state:'', job:'', hiring:'',dateAdmission:new Date()};
+  constructor(
+    private alertController: AlertController,
+    private firestore: AngularFirestore
+  ) {}
 
-
-  constructor(private alertController: AlertController,private db: AngularFireDatabase) {}
-
-
+  async showAlert(header: string, message: string) {
+    const alert = await this.alertController.create({
+      header: header,
+      message: message,
+      buttons: ['OK'],
+      cssClass: 'my-custom-alert',
+    });
+    await alert.present();
+  }
 
   async addRegister() {
-    if (this.user.name &&
+    if (
+      this.user.name &&
       this.user.cupo &&
       this.user.curp &&
       this.user.rfc &&
       this.user.state &&
       this.user.job &&
       this.user.hiring &&
-      //validar que la fecha no este vacia
-      this.user.dateAdmission) {
-        this.db.list('/users').push(this.user);
-        this.user = {name: '', cupo: '', curp: '', rfc: '', state: '', job: '', hiring: '', dateAdmission: new Date()};
-    }else {
-      const alert = await this.alertController.create({
-        header: 'Alerta',
-        message: 'Debe rellenar todos los campos',
-        buttons: ['OK'],
-      });
-      await alert.present();
+      this.user.dateAdmission
+    ) {
+      await this.firestore.collection('users').add(this.user);
+      this.user = {
+        name: '',
+        cupo: '',
+        curp: '',
+        rfc: '',
+        state: '',
+        job: '',
+        hiring: '',
+        dateAdmission: new Date()
+      };
+      await this.showAlert('Éxito', 'Registro agregado correctamente');
+    } else {
+      await this.showAlert('Alerta', 'Debe rellenar todos los campos');
     }
-
   }
-
-
-  /*async presentAlert() {
-    const alert = await this.alertController.create({
-      header: 'Alert!',
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          handler: () => {
-            this.handlerMessage = 'Alert canceled';
-          },
-        },
-        {
-          text: 'OK',
-          role: 'confirm',
-          handler: () => {
-            this.handlerMessage = 'Alert confirmed';
-
-            this.db.list('Users').push({
-              Name: 'John Doe',
-              Age: 30,
-              email: 'johndoe@email.com'
-            });
-          },
-        },
-      ],
-    });
-
-    await alert.present();
-
-    const { role } = await alert.onDidDismiss();
-    this.roleMessage = `Dismissed with role: ${role}`;
-  }*/
 }
