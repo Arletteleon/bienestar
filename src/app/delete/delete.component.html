@@ -1,0 +1,60 @@
+
+<ion-content>
+  <div>
+    <ion-searchbar animated="true" placeholder="INGRESE EL CUPO" [(ngModel)]="cupo"></ion-searchbar>
+  </div>
+  <div id="contenedor">
+<ng-container *ngIf="users$ | async as users">
+
+  <div *ngFor="let user of users">
+    <div id="columnas">
+    <div>
+      <ion-item fill="outline">
+        <ion-label position="floating">Nombre Completo</ion-label>
+        <ion-input type="text" [(ngModel)]="user.name" readonly></ion-input>
+      </ion-item>
+
+      <ion-item fill="outline">
+        <ion-label position="floating">CUPO</ion-label>
+        <ion-input type="number" [(ngModel)]="user.cupo" readonly></ion-input>
+      </ion-item>
+
+      <ion-item fill="outline">
+        <ion-label position="floating">RFC</ion-label>
+        <ion-input type="text" [(ngModel)]="user.rfc" readonly></ion-input>
+      </ion-item>
+
+      <ion-item fill="outline">
+        <ion-label position="floating">CURP</ion-label>
+        <ion-input type="text" [(ngModel)]="user.curp" readonly></ion-input>
+      </ion-item>
+
+      <ion-item fill="outline">
+        <ion-label position="floating">Estado</ion-label>
+        <ion-input type="text" [(ngModel)]="user.state" readonly></ion-input>
+      </ion-item>
+    </div>
+    <div >
+      <ion-item fill="outline">
+        <ion-label position="floating">Puesto</ion-label>
+        <ion-input type="text" [(ngModel)]="user.job" readonly></ion-input>
+      </ion-item>
+
+      <ion-item fill="outline">
+        <ion-label position="floating">Contratación</ion-label>
+        <ion-input type="text" [(ngModel)]="user.hiring" readonly></ion-input>
+      </ion-item>
+
+      <ion-item fill="outline">
+        <ion-label position="floating">Fecha de Ingreso</ion-label>
+        <ion-input type="date" [(ngModel)]="user.dateAdmission" readonly></ion-input>
+      </ion-item>
+    </div>
+      </div>
+  </div>
+</ng-container>
+  </div>
+  <ion-button (click)="deleteUser()">Eliminar usuario</ion-button>
+  <ion-button (click)="searchUser()">Buscar Usuario</ion-button>
+<app-footer></app-footer>
+</ion-content>
