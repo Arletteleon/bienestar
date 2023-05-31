@@ -48,7 +48,7 @@ export class ManualRegistrationExitComponent  implements OnInit {
     await this.firestore.collection('registrationTime').add(this.user);
     await this.showAlert('Exito', 'Entrada Registrada');
   }
-  
+
 
 }
 
