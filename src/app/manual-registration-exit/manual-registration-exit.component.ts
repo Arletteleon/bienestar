@@ -13,7 +13,7 @@ export class ManualRegistrationExitComponent  implements OnInit {
 
   currentDate: string | undefined;
   date: string | undefined;
-  cupo:string='';
+  cupo: string = '';
   user: InterfaceRegistrationTime = {
     cupo: '',
     time: new Date()
@@ -22,7 +22,8 @@ export class ManualRegistrationExitComponent  implements OnInit {
   constructor(
     private firestore: AngularFirestore,
     private alertController: AlertController
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     moment.locale('es')
@@ -43,8 +44,11 @@ export class ManualRegistrationExitComponent  implements OnInit {
     await alert.present();
   }
 
-  async registerManual(){
+  async registerManual() {
     await this.firestore.collection('registrationTime').add(this.user);
-    await this.showAlert('Exito','Entrada Registrada');
+    await this.showAlert('Exito', 'Entrada Registrada');
   }
+  
+
 }
+

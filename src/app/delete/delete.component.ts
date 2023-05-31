@@ -26,9 +26,13 @@ export class DeleteComponent implements OnInit, OnDestroy {
 
   constructor(private firestore: AngularFirestore) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.searchUser()
+  }
 
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    this.searchUser()
+  }
 
   searchUser() {
     console.log(this.cupo);
