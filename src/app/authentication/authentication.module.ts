@@ -15,6 +15,9 @@ import { AuthenticationPage } from './authentication.page';
     IonicModule,
     AuthenticationPageRoutingModule
   ],
+  exports: [
+    AuthenticationPage
+  ],
   declarations: [AuthenticationPage]
 })
 export class AuthenticationPageModule {}

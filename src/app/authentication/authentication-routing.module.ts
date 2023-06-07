@@ -5,14 +5,9 @@ import {IonicModule} from "@ionic/angular";
 
 const routes: Routes = [
   {
-    path: 'authentication',
-    component: AuthenticationPage,
-  },
-  {
     path: '',
-    redirectTo: '/authentication',
-    pathMatch: 'full'
-  }
+    component: AuthenticationPage
+  },
 ];
 
 @NgModule({

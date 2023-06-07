@@ -27,9 +27,9 @@ import { ManualRegistrationExitModule} from "../manual-registration-exit/manual-
     HeaderPageModule,
     ManualRegistrationExitModule
   ],
-    exports: [
-        MenuPrincipalPage
-    ],
-    declarations: [MenuPrincipalPage]
+  exports: [
+    MenuPrincipalPage
+  ],
+  declarations: [MenuPrincipalPage]
 })
 export class MenuPrincipalPageModule {}
