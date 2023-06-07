@@ -49,6 +49,5 @@ export class ManualRegistrationExitComponent  implements OnInit {
     await this.showAlert('Exito', 'Entrada Registrada');
   }
 
-
 }
 

@@ -6,7 +6,7 @@ import {PopoverManualRegisterComponent} from "./popover-register-manual";
 
 const routes: Routes = [
   {
-    path: 'menu_principal',
+    path: '',
     component: MenuPrincipalPage,
     children: [
       {
@@ -36,7 +36,7 @@ const routes: Routes = [
     path: '',
     redirectTo: '/menu_principal/register',
     pathMatch: 'full'
-  }
+  },
 ];
 
 @NgModule({
