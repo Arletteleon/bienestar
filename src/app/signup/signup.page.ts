@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import {Router} from "@angular/router"
 
 @Component({
   selector: 'app-signup',
@@ -10,6 +11,8 @@ export class SignupPage implements OnInit {
 
   constructor(
     public modalCtrl: ModalController,
+    private router: Router
+
   ) { }
 
   ngOnInit() {
@@ -19,6 +22,9 @@ export class SignupPage implements OnInit {
     return await this.modalCtrl.dismiss();
   }
 
-  register(){}
+  register(){
+    this.router.navigate(['/menu_principal'])
+    this.dismiss()
+  }
 
 }

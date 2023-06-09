@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import {Router} from "@angular/router"
 
 @Component({
   selector: 'app-authentication',
@@ -10,6 +11,7 @@ export class AuthenticationPage implements OnInit {
 
   constructor(
     public modalCtrl: ModalController,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -19,6 +21,10 @@ export class AuthenticationPage implements OnInit {
     await this.modalCtrl.dismiss();
   }
 
-  login(){}
+  login(){
+    this.router.navigate(['/maps'])
+    this.dismiss()
+  }
+
 
 }
