@@ -3,9 +3,10 @@ ion-content{
   text-align: center;
 }
 
-ion-item{
+ion-item {
   margin: 20px;
-  width: 500px;
+  width: 80%; /* Porcentaje del ancho de la pantalla */
+  max-width: 500px; /* Máximo ancho de 500px */
 }
 #columnas{
   display: flex; justify-content: center;
@@ -17,4 +18,13 @@ ion-item{
 
 ion-alert .my-custom-alert .alert-wrapper {
   --ion-background-color: red;
+}
+
+@media screen and (max-width: 600px) {
+  #columnas {
+    flex-direction: column; /* Cambiar a diseño de columna en pantallas pequeñas */
+  }
+  ion-item {
+    width: 100%; /* Ancho completo en pantallas pequeñas */
+  }
 }

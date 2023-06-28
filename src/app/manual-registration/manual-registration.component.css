@@ -10,7 +10,7 @@ ion-content{
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 400px;
+  height: 50vh;
 }
 
 .digital-clock {
@@ -46,5 +46,14 @@ ion-searchbar {
   margin: 0 auto;
   --ion-background-color: #F2E8DC;
   width: 40%;
+}
+
+@media screen and (max-width: 600px) {
+  .digital-clock {
+    width: 80%; /* Ancho mayor en pantallas pequeñas */
+  }
+  ion-item {
+    width: 80%; /* Ancho mayor en pantallas pequeñas */
+  }
 }
 

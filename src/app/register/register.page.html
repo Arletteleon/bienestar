@@ -5,53 +5,56 @@
     </ion-label>
   </ion-item>
   <form (ngSubmit)="addRegister()">
-    <div id="columnas">
-      <div>
-        <ion-item fill="outline">
-          <ion-label position="floating">Nombre Completo</ion-label>
-          <ion-input type="text" [(ngModel)]="user.name" name="name" placeholder="Enter text" ></ion-input>
-        </ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-sm="6">
+          <ion-item fill="outline">
+            <ion-label position="floating">Nombre Completo</ion-label>
+            <ion-input type="text" [(ngModel)]="user.name" name="name" placeholder="Enter text" ></ion-input>
+          </ion-item>
 
-        <ion-item fill="outline">
-          <ion-label position="floating">CUPO</ion-label>
-          <ion-input type="number" [(ngModel)]="user.cupo" name="cupo" placeholder="Enter text" ></ion-input>
-        </ion-item>
+          <ion-item fill="outline">
+            <ion-label position="floating">CUPO</ion-label>
+            <ion-input type="number" [(ngModel)]="user.cupo" name="cupo" placeholder="Enter text" ></ion-input>
+          </ion-item>
 
-        <ion-item fill="outline">
-          <ion-label position="floating">RFC</ion-label>
-          <ion-input type="text" [(ngModel)]="user.rfc" name="rfc" placeholder="Enter text" ></ion-input>
-        </ion-item>
+          <ion-item fill="outline">
+            <ion-label position="floating">RFC</ion-label>
+            <ion-input type="text" [(ngModel)]="user.rfc" name="rfc" placeholder="Enter text" ></ion-input>
+          </ion-item>
 
-        <ion-item fill="outline">
-          <ion-label position="floating">CURP</ion-label>
-          <ion-input type="text" [(ngModel)]="user.curp" name="curp" placeholder="Enter text" ></ion-input>
-        </ion-item>
+          <ion-item fill="outline">
+            <ion-label position="floating">CURP</ion-label>
+            <ion-input type="text" [(ngModel)]="user.curp" name="curp" placeholder="Enter text" ></ion-input>
+          </ion-item>
 
-        <ion-item fill="outline">
-          <ion-label position="floating">Estado</ion-label>
-          <ion-input type="text" [(ngModel)]="user.state" name="state" placeholder="Enter text" ></ion-input>
-        </ion-item>
-      </div>
-      <div >
-        <ion-item fill="outline">
-          <ion-label position="floating">Puesto</ion-label>
-          <ion-input type="text" [(ngModel)]="user.job" name="job" placeholder="Enter text" ></ion-input>
-        </ion-item>
+          <ion-item fill="outline">
+            <ion-label position="floating">Estado</ion-label>
+            <ion-input type="text" [(ngModel)]="user.state" name="state" placeholder="Enter text" ></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12" size-sm="6">
+          <ion-item fill="outline">
+            <ion-label position="floating">Puesto</ion-label>
+            <ion-input type="text" [(ngModel)]="user.job" name="job" placeholder="Enter text" ></ion-input>
+          </ion-item>
 
-        <ion-item fill="outline">
-          <ion-label position="floating">Contratación</ion-label>
-          <ion-select [(ngModel)]="user.hiring" name="hiring" required>
-            <ion-select-option value="Estructura">ESTRUCTURA</ion-select-option>
-            <ion-select-option value="HCP">HCP - PLANTILLA COMPLEMENTARIA PERMANENTE</ion-select-option>
-          </ion-select>
-        </ion-item>
+          <ion-item fill="outline">
+            <ion-label position="floating">Contratación</ion-label>
+            <ion-select [(ngModel)]="user.hiring" name="hiring" required>
+              <ion-select-option value="Estructura">ESTRUCTURA</ion-select-option>
+              <ion-select-option value="HCP">HCP - PLANTILLA COMPLEMENTARIA PERMANENTE</ion-select-option>
+            </ion-select>
+          </ion-item>
 
-        <ion-item fill="outline">
-          <ion-label position="floating">Fecha de Ingreso</ion-label>
-          <ion-input type="date" [(ngModel)]="user.dateAdmission" name="dateAdmission" placeholder="Enter text" ></ion-input>
-        </ion-item>
-      </div>
-    </div>
+          <ion-item fill="outline">
+            <ion-label position="floating">Fecha de Ingreso</ion-label>
+            <ion-input type="date" [(ngModel)]="user.dateAdmission" name="dateAdmission" placeholder="Enter text" ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
     <ion-button type="submit">Registrar</ion-button>
   </form>
 

@@ -1,19 +1,27 @@
 ion-searchbar{
   --ion-background-color: #F2E8DC;
+  width: 90%; /* Ancho del 90% del contenedor */
+  margin: 2% auto; /* Margen del 2% vertical y centrado horizontalmente */
+
+  --ion-background-color: #F2E8DC;
 }
 ion-content{
   text-align: center;
+  width: 100%; /* Ancho del 100% del contenedor padre */
+  height: 100%; /* Alto del 100% del contenedor padre */
 }
 
-ion-item{
-  margin: 20px;
-  width: 500px;
+ion-item {
+  margin: 2% 5%; /* Margen del 2% vertical y 5% horizontal */
+  width: 90%; /* Ancho del 90% del contenedor */
 }
+
 #columnas{
   display: flex; justify-content: center;
 }
 
 #contenedor{
-  width: 100%;
-  height: 480px;
+  width: 90%; /* Ancho del 90% del contenedor padre */
+  height: 60vh; /* Alto del 60% de la altura visible del contenedor padre */
+  margin: 0 auto; /* Centrado horizontalmente */
 }

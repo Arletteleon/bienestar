@@ -4,9 +4,17 @@
 }
 
 .title {
-  margin-bottom: 30px;
+  margin-bottom: 20%;
 }
 
 .title p {
   margin-top: 0 !important;
+}
+.ion-justify-content-center {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Agregado para centrar verticalmente */
+}
+ion-content{
+  --my-customer-color: #fdf3e2;
 }

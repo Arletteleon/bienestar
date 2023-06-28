@@ -25,6 +25,11 @@ export class AuthenticationPage implements OnInit {
     this.router.navigate(['/maps'])
     this.dismiss()
   }
+  registration(){
 
+  }
+  registrationExit(){
+
+  }
 
 }

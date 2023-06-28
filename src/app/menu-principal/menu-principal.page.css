@@ -3,6 +3,8 @@ ion-tab-bar{
   --background: #21503F;
   --color: white;
   --ion-color-primary: #BF8F54;
+  width: 100%; /* Ancho del 100% del contenedor */
+
 }
 
 .item{
@@ -27,4 +29,10 @@ ion-tab-bar{
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 600px) {
+  ion-tab-bar {
+    font-size: 0.8rem; /* Tamaño de fuente menor en pantallas pequeñas */
+  }
 }

@@ -15,3 +15,13 @@
 .forget a {
   font-size: small !important;
 }
+.ion-justify-content-center {
+  display: flex;
+  justify-content: center;
+}
+ion-content{
+  --background: var(--my-custom-color);
+}
+primary-input{
+  --ion-color-secondary: #3dc2ff;
+}
