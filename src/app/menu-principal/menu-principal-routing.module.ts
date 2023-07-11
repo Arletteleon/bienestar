@@ -26,6 +26,10 @@ const routes: Routes = [
         loadChildren: () => import('../manual-registration-exit/manual-registration-exit.module').then( m =>m.ManualRegistrationExitModule)
       },
       {
+        path: 'permisos',
+        loadChildren: () => import('../permisos/permisos.module').then(m =>m.PermisosModule)
+      },
+      {
         path: '',
         redirectTo: '/menu_principal/register',
         pathMatch: 'full'

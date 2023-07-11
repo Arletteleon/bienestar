@@ -57,3 +57,13 @@ ion-searchbar {
   }
 }
 
+.custom-alert.success {
+  --background: var(--ion-color-success);
+  color: var(--ion-color-success-contrast);
+}
+
+/* Estilo para el color de error */
+.custom-alert.error {
+  --background: var(--ion-color-danger);
+  color: var(--ion-color-danger-contrast);
+}

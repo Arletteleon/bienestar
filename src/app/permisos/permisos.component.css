@@ -1,0 +1,14 @@
+ion-content{
+  text-align: center;
+  width: 100%; /* Ancho del 100% del contenedor padre */
+  height: 100%; /* Alto del 100% del contenedor padre */
+}
+ion-item {
+  margin: 2% 5%; /* Margen del 2% vertical y 5% horizontal */
+  width: 90%; /* Ancho del 90% del contenedor */
+}
+#contenedor{
+  width: 90%; /* Ancho del 90% del contenedor padre */
+  height: 60vh; /* Alto del 60% de la altura visible del contenedor padre */
+  margin: 0 auto; /* Centrado horizontalmente */
+}

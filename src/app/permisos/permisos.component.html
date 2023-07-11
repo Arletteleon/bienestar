@@ -1,0 +1,17 @@
+<ion-content>
+  <div id="contenedor">
+<ion-input type="file" (change)="onFileSelected($event)"></ion-input>
+<ion-button (click)="uploadImage()">Subir archivo</ion-button>
+
+<ion-card *ngIf="downloadURL">
+  <ion-img [src]="downloadURL" alt="Imagen subida"></ion-img>
+</ion-card>
+
+<ion-card *ngIf="uploadProgress !== null">
+  <ion-card-content>
+    <p>Progreso de carga: {{ uploadProgress }}%</p>
+  </ion-card-content>
+</ion-card>
+  </div>
+  <app-footer></app-footer>
+</ion-content>

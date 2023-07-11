@@ -1,4 +1,4 @@
 export interface InterfaceRegistrationTime{
-  cupo:string;
+  cupo:number;
   time:Date;
 }

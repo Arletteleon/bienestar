@@ -8,14 +8,14 @@
     <p>¡Comencemos!</p>
   </div>
 
-  <ion-input placeholder="CUPO" class="primary-input" ></ion-input>
+  <ion-input placeholder="CUPO" class="primary-input" type="text" name="cupo" [(ngModel)]="inputValue"></ion-input>
 
   <!--<div class="ion-margin-top ion-text-right forget">
     <a href="#">¿Olvidaste la contraseña?</a>
   </div>-->
 
   <div class="ion-margin-top ion-justify-content-center">
-    <ion-button (click)="registration()" color="success">Entrada</ion-button>
+    <ion-button (click)="registrationEntry()" color="success">Entrada</ion-button>
     <ion-button (click)="registrationExit()" color="danger">Salida</ion-button>
   </div>
 

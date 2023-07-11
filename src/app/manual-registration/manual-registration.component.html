@@ -10,8 +10,11 @@
   </div>
   <ion-item fill="outline">
     <ion-label position="floating">INGRESE EL CUPO</ion-label>
-    <ion-input type="text" [(ngModel)]="user.cupo" name="cupo" placeholder="Enter text" oninput="this.value = this.value.replace(/[^0-9]/g, '')"></ion-input>
+    <ion-input type="text" name="cupo" placeholder="Enter text" [(ngModel)]="inputValue"></ion-input>
   </ion-item>
   <ion-button (click)="registerManual()">Registrar entrada</ion-button>
+
+
   <app-footer></app-footer>
 </ion-content>
+
