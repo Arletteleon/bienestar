@@ -1,17 +1,35 @@
 <ion-content>
-  <div id="contenedor">
-<ion-input type="file" (change)="onFileSelected($event)"></ion-input>
-<ion-button (click)="uploadImage()">Subir archivo</ion-button>
+  <div id="container" class="container">
+    <!-- Agregar campos de cupo y observaciones -->
+    <div class="campos-container"> <!-- Agrega una clase para este div -->
+      <ion-item>
+        <ion-label position="floating">Cupo</ion-label>
+        <ion-input [(ngModel)]="cupo" type="text"></ion-input>
+      </ion-item>
 
-<ion-card *ngIf="downloadURL">
-  <ion-img [src]="downloadURL" alt="Imagen subida"></ion-img>
-</ion-card>
+      <ion-item>
+        <ion-label position="floating">Observaciones</ion-label>
+        <ion-textarea [(ngModel)]="observaciones" rows="5"></ion-textarea>
+      </ion-item>
+    </div> <!-- Cierra el div de campos-container -->
 
-<ion-card *ngIf="uploadProgress !== null">
-  <ion-card-content>
-    <p>Progreso de carga: {{ uploadProgress }}%</p>
-  </ion-card-content>
-</ion-card>
+    <!-- Vista previa de la imagen seleccionada -->
+    <img [src]="selectedFilePreview" alt="Vista previa de la imagen" *ngIf="selectedFilePreview" class="imagen-cargada">
+
+    <!-- Botón personalizado para seleccionar archivo -->
+    <ion-button (click)="fileInput.click()" class="seleccionar-archivo">Seleccionar archivo</ion-button>
+
+    <!-- Input de tipo file oculto -->
+    <input type="file" (change)="onFileSelected($event)" style="display: none;" #fileInput>
   </div>
-  <app-footer></app-footer>
+
+  <!-- Botones debajo de la imagen -->
+  <div class="botones">
+    <ion-button (click)="uploadImage()">Subir archivo</ion-button>
+  </div>
+
+  <!-- Margen superior para separar el footer -->
+  <div style="margin-top: 100px;">
+    <app-footer></app-footer>
+  </div>
 </ion-content>

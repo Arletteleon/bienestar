@@ -52,7 +52,10 @@ const routes: Routes = [
     path: 'permisos',
     loadChildren: () => import('./permisos/permisos.module').then( m => m.PermisosModule)
   },
-
+  {
+    path: 'pdf',
+    loadChildren: () => import('./reporte/reporte.module').then( m => m.ReporteModule)
+  },
 
 
 ];

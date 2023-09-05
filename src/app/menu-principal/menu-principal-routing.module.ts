@@ -30,6 +30,15 @@ const routes: Routes = [
         loadChildren: () => import('../permisos/permisos.module').then(m =>m.PermisosModule)
       },
       {
+        path: 'modificar',
+        loadChildren: () => import('../modificar-registros/modificar-registros.module').then(m =>m.ModificarRegistrosModule)
+      },
+
+      {
+        path: 'pdf',
+        loadChildren: () => import('../reporte/reporte.module').then(m =>m.ReporteModule)
+      },
+      {
         path: '',
         redirectTo: '/menu_principal/register',
         pathMatch: 'full'

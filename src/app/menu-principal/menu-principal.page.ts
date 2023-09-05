@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { PopoverRegisterComponent } from './popover.register.component';
 import { PopoverExceptionComponent} from "./popover-exception.component";
+import { Router} from "@angular/router";
 
 @Component({
   selector: 'app-menu-principal',
@@ -11,7 +12,7 @@ import { PopoverExceptionComponent} from "./popover-exception.component";
 })
 export class MenuPrincipalPage {
 
-  constructor(public popoverController: PopoverController) { }
+  constructor(public popoverController: PopoverController, private router: Router) { }
 
   async registerPopover(ev: any) {
     const popover = await this.popoverController.create({
@@ -35,6 +36,9 @@ export class MenuPrincipalPage {
     await this.dismissPopover();
   }
 
+  async buscar(ev: any){
+    this.router.navigate(['/menu_principal/pdf']);
+  }
   dismissPopover() {
     this.popoverController.dismiss();
   }

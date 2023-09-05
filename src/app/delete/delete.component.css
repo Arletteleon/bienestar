@@ -14,6 +14,8 @@ ion-content{
 ion-item {
   margin: 2% 5%; /* Margen del 2% vertical y 5% horizontal */
   width: 90%; /* Ancho del 90% del contenedor */
+  background-color: #ffffff; /* Color de fondo cuando no es de solo lectura */
+  color: #000000; /* Color de texto cuando no es de solo lectura */
 }
 
 #columnas{
@@ -25,3 +27,29 @@ ion-item {
   height: 60vh; /* Alto del 60% de la altura visible del contenedor padre */
   margin: 0 auto; /* Centrado horizontalmente */
 }
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 300px; /* Agrega margen superior a los botones */
+}
+
+ion-footer {
+  margin-top: 200px; /* Agrega margen superior al footer */
+}
+
+ion-label[readonly],
+ion-input[readonly]
+{
+  background-color: #ffffff; /* Color de fondo cuando no es de solo lectura */
+  color: #000000; /* Color de texto cuando no es de solo lectura */
+}
+.readonly-item {
+  pointer-events: none; /* Evita que el elemento sea interactivo */
+  opacity: 1.5; /* Cambia la opacidad para dar una apariencia de solo lectura */
+}
+
+
+
+
+

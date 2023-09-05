@@ -13,6 +13,7 @@ import { DeleteModule} from "../delete/delete.module";
 import { HeaderPageModule} from "../header/header.module";
 import { ManualRegistrationModule} from "../manual-registration/manual-registration.module";
 import { ManualRegistrationExitModule} from "../manual-registration-exit/manual-registration-exit.module";
+import { ReporteModule} from "../reporte/reporte.module";
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { ManualRegistrationExitModule} from "../manual-registration-exit/manual-
     DeleteModule,
     ManualRegistrationModule,
     HeaderPageModule,
-    ManualRegistrationExitModule
+    ManualRegistrationExitModule,
+    ReporteModule,
   ],
   exports: [
     MenuPrincipalPage

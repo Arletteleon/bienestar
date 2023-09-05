@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertService} from "../Funciones/alert.service";
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { InterfaceRegister } from '../interface/interface.register';
 
@@ -9,8 +9,6 @@ import { InterfaceRegister } from '../interface/interface.register';
   styleUrls: ['./register.page.css'],
 })
 export class RegisterPage {
-
-  handlerMessage: string = "";
   user: InterfaceRegister = {
     name: '',
     cupo: '',
@@ -23,19 +21,9 @@ export class RegisterPage {
   };
 
   constructor(
-    private alertController: AlertController,
+    private alertService: AlertService,
     private firestore: AngularFirestore
   ) {}
-
-  async showAlert(header: string, message: string) {
-    const alert = await this.alertController.create({
-      header: header,
-      message: message,
-      buttons: ['OK'],
-      cssClass: 'my-custom-alert',
-    });
-    await alert.present();
-  }
 
   async addRegister() {
     if (
@@ -59,9 +47,9 @@ export class RegisterPage {
         hiring: '',
         dateAdmission: new Date()
       };
-      await this.showAlert('Éxito', 'Registro agregado correctamente');
+      await this.alertService.showAlert('Éxito', 'Registro agregado correctamente'); // Usa el método del servicio
     } else {
-      await this.showAlert('Alerta', 'Debe rellenar todos los campos');
+      await this.alertService.showAlert('Alerta', 'Debe rellenar todos los campos'); // Usa el método del servicio
     }
   }
 }

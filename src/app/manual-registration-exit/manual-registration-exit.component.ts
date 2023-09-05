@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
-import { InterfaceRegistrationTime } from '../interface/interface.registration.time';
 import { AlertController } from '@ionic/angular';
 import { CupoCheck} from "../Funciones/cupo.check";
 import { StoreRegistration} from "../Funciones/store.registration";
+import {InterfaceRegistrationTimeExit} from "../interface/interface.registration.time.exit";
 
 interface User {
   cupo: number;
@@ -21,7 +21,7 @@ export class ManualRegistrationExitComponent  implements OnInit {
   currentDate: string | undefined;
   date: string | undefined;
   inputValue: string = '';
-  user: InterfaceRegistrationTime = {
+  user: InterfaceRegistrationTimeExit = {
     cupo: 0,
     time: new Date(),
   };
@@ -71,7 +71,7 @@ export class ManualRegistrationExitComponent  implements OnInit {
   }
   async storeRegistration(cupo: number) {
     try {
-      await this.registration.storeRegistration(cupo);
+      await this.registration.storeRegistrationExit(cupo);
       this.showAlert('Éxito', 'Entrada Registrada', 'success');
     } catch (error) {
       this.showAlert('Error', 'Error al almacenar el registro', 'error');

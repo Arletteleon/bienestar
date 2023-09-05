@@ -32,7 +32,7 @@ export class PopoverRegisterComponent {
     await this.dismissPopover();
   }
   async navigateToPageModifications() {
-    await this.navController.navigateForward('CAMBIAR');
+    await this.navController.navigateForward('/menu_principal/modificar');
     await this.dismissPopover();
   }
   async navigateToPageDeleteRegister() {
