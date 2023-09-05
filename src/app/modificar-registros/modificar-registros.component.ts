@@ -11,7 +11,7 @@ import { InterfaceRegister } from '../interface/interface.register';
 export class ModificarRegistrosComponent {
   cupo: string = '';
   cupoActualizar: string = '';
-  users: Observable<any[]> | undefined;
+  users: Observable<InterfaceRegister[]> | undefined;
   user: InterfaceRegister = {
     name: '',
     cupo: '',
@@ -22,73 +22,57 @@ export class ModificarRegistrosComponent {
     hiring: '',
     dateAdmission: new Date(),
   };
-  userDataToRestore: InterfaceRegister | null = null; // Variable para guardar datos antes de eliminar
+  userId:string='';
+
+  // Mantén una copia separada para los datos del usuario actual
+  userCopy: InterfaceRegister | undefined;
 
   constructor(private firestore: AngularFirestore) {}
 
   searchUser() {
     console.log(this.cupo);
+    this.cupoActualizar = this.cupo;
+    this.firestore
+      .collection<InterfaceRegister>('users', (ref) =>
+        ref.where('cupo', '==', parseInt(this.cupo))
+      )
+      .get()
+      .subscribe((querySnapshot) => {
+        if (!querySnapshot.empty) {
+          // Si se encontraron documentos con el cupo especificado, toma el primer documento
+          const doc = querySnapshot.docs[0];
+          this.userId = doc.id; // Obtiene el ID del documento
+        }
+      });
+
     this.firestore
       .collection<InterfaceRegister>('users', (ref) =>
         ref.where('cupo', '==', parseInt(this.cupo))
       )
       .valueChanges()
       .subscribe((users: InterfaceRegister[]) => {
-        this.users = of(users);
+        if (users.length > 0) {
+          this.user = users[0]; // Actualiza la variable user con los datos del usuario encontrado
+          this.userCopy = { ...this.user }; // Haz una copia separada para evitar sobrescribir los datos después
+          this.users = of(users);
+        } else {
+          // Si no se encuentra el usuario, puedes manejarlo aquí
+          console.log('Usuario no encontrado.');
+        }
       });
-    this.cupoActualizar = this.cupo;
-    this.cupo = '';
   }
 
-  async updateUser() {
-    if (!this.cupoActualizar) {
-      console.error('El valor de cupoActualizar no es válido.');
-      return;
-    }
-
-    const cupoToDelete = parseInt(this.cupoActualizar);
-    console.log(this.cupoActualizar);
-    console.log(cupoToDelete);
-
-    // Obtén los datos del usuario antes de eliminarlo
-    try {
-      const querySnapshot = await this.firestore
-        .collection<InterfaceRegister>('users', (ref) =>
-          ref.where('cupo', '==', cupoToDelete)
-        )
-        .get()
-        .toPromise();
-
-      // @ts-ignore
-      querySnapshot.forEach((doc) => {
-        this.userDataToRestore = doc.data() as InterfaceRegister;
+  updateUser() {
+    // Actualiza los datos del usuario en la base de datos
+    const userRef = this.firestore.collection('users').doc(this.userId); // Reemplaza 'vk5mZmuuGZhMK5sM8ZEI' con el ID correcto del usuario
+    userRef
+      .update(this.user)
+      .then(() => {
+        console.log('Datos actualizados exitosamente.');
+        // No es necesario sobrescribir this.user después de la actualización
+      })
+      .catch((error) => {
+        console.error('Error al actualizar datos:', error);
       });
-
-      // Elimina el usuario existente
-      // @ts-ignore
-
-      querySnapshot.forEach((doc) => {
-        doc.ref
-          .delete()
-          .then(() => {
-            console.log('Usuario eliminado correctamente.');
-          })
-          .catch((error) => {
-            console.error('Error al eliminar el usuario:', error);
-          });
-      });
-
-      // Agrega un nuevo usuario con los datos actualizados o restaurados
-      if (this.userDataToRestore) {
-        await this.firestore.collection('users').add(this.userDataToRestore);
-        console.log('Usuario agregado correctamente con datos restaurados.');
-      }
-
-      this.userDataToRestore = null; // Limpia los datos restaurados
-    } catch (error) {
-      console.error('Error al obtener/eliminar/agregar el usuario:', error);
-    }
-
-    this.cupo = '';
   }
 }
