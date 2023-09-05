@@ -1,0 +1,17 @@
+<ion-content>
+  <ion-item class="date-picker">
+    <div class="contenedor">
+    <div>
+      <ion-label class="green-label">Seleccionar Fecha Inicial</ion-label>
+      <ion-datetime [(ngModel)]="fechaInicial" display-format="DD/MM/YYYY" class="calendarInicial"></ion-datetime>
+    </div>
+    <div>
+      <ion-label class="green-label">Seleccionar Fecha Final</ion-label>
+      <ion-datetime [(ngModel)]="fechaFinal" display-format="DD/MM/YYYY" class="calendarFinal"></ion-datetime>
+    </div>
+    </div>
+  </ion-item>
+  <ion-button (click)="generateReport()">Generar Informe</ion-button>
+  <app-footer></app-footer>
+</ion-content>
+
