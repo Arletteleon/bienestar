@@ -14,6 +14,7 @@ import { HeaderPageModule} from "../header/header.module";
 import { ManualRegistrationModule} from "../manual-registration/manual-registration.module";
 import { ManualRegistrationExitModule} from "../manual-registration-exit/manual-registration-exit.module";
 import { ReporteModule} from "../reporte/reporte.module";
+import { ReportePermisosModule} from "../reporte-permisos/reporte-permisos.module";
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { ReporteModule} from "../reporte/reporte.module";
     HeaderPageModule,
     ManualRegistrationExitModule,
     ReporteModule,
+    ReportePermisosModule,
   ],
   exports: [
     MenuPrincipalPage

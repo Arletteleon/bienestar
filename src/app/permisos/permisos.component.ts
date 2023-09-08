@@ -19,6 +19,9 @@ export class PermisosComponent {
   observaciones: string = '';
   selectedFilePreview: string | null = null; // Agrega esta propiedad para la vista previa de la imagen
 
+  fechaPermiso: string | null = null;
+  diasPermiso: number | null = null;
+
   constructor(
     private storage: AngularFireStorage,
     private firestore: AngularFirestore,
@@ -44,7 +47,8 @@ export class PermisosComponent {
     if (this.selectedFile) {
       const fileRef = this.storage.ref(this.selectedFile.name);
       const task = this.storage.upload(this.selectedFile.name, this.selectedFile);
-
+      const fechaPermiso = new Date();
+      const diasPermiso = this.diasPermiso;
       // Actualizar el progreso de carga
       task.percentageChanges()
         .pipe(
@@ -65,6 +69,8 @@ export class PermisosComponent {
                     name: this.selectedFile?.name || 'Nombre de archivo desconocido',
                     cupo: this.cupo,
                     observaciones: this.observaciones,
+                    fechaPermiso: fechaPermiso, // Agrega la fecha de permiso aquí
+                    diasPermiso: diasPermiso,   // Agrega los días de permiso aquí
                     // Otros datos relacionados con la imagen que desees guardar
                   };
 

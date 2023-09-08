@@ -29,42 +29,42 @@ export class DeleteComponent {
     hiring: '',
     dateAdmission: new Date(),
   };
+  userId:string='';
 
   constructor(
     private alertService: AlertService,
     private firestore: AngularFirestore) {}
 
-   searchUser() {
+  searchUser() {
     console.log(this.cupo);
     this.cupoBorrar = this.cupo;
     this.firestore
-      .collection<InterfaceRegisterWithFormattedDate>('users', (ref) =>
+      .collection<InterfaceRegister>('users', (ref) =>
+        ref.where('cupo', '==', parseInt(this.cupo))
+      )
+      .get()
+      .subscribe((querySnapshot) => {
+        if (!querySnapshot.empty) {
+          // Si se encontraron documentos con el cupo especificado, toma el primer documento
+          const doc = querySnapshot.docs[0];
+          this.userId = doc.id; // Obtiene el ID del documento
+        }
+      });
+
+    this.firestore
+      .collection<InterfaceRegister>('users', (ref) =>
         ref.where('cupo', '==', parseInt(this.cupo))
       )
       .valueChanges()
-      .subscribe((users: InterfaceRegisterWithFormattedDate[]) => {
-        if (users.length === 0) {
-          // No se encontraron usuarios con el cupo especificado
-          this.alertService.showAlert('Mensaje', 'No se encontraron usuarios con el cupo especificado.');
-        } else {
-          users = users.map((user) => {
-            // Convierte el Timestamp a una fecha legible con nombre de mes
-            const dateAdmission = (user.dateAdmission instanceof firebase.firestore.Timestamp) ? user.dateAdmission.toDate() : user.dateAdmission;
-            const monthNames = [
-              'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
-              'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
-            ];
-            const day = dateAdmission.getDate();
-            const monthIndex = dateAdmission.getMonth();
-            const year = dateAdmission.getFullYear();
-            user.dateAdmissionFormatted = `${day} de ${monthNames[monthIndex]} de ${year}`;
-            return user;
-          });
-
+      .subscribe((users: InterfaceRegister[]) => {
+        if (users.length > 0) {
+          this.user = users[0]; // Actualiza la variable user con los datos del usuario encontrado
           this.users = of(users);
+        } else {
+          // Si no se encuentra el usuario, puedes manejarlo aquí
+          console.log('Usuario no encontrado.');
         }
       });
-    this.cupo = '';
   }
 
 
@@ -98,6 +98,15 @@ export class DeleteComponent {
         console.error('Error al obtener los usuarios:', error);
       });
 
-    this.cupo = '';
+    this.user.name;
+     this.user.cupo;
+     this.user.rfc;
+     this.user.curp;
+     this.user.state;
+     this.user.job;
+     this.user.hiring;
+     this.user.dateAdmission;
+
+     this.cupo = '';
   }
 }

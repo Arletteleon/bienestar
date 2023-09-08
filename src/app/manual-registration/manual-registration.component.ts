@@ -5,6 +5,8 @@ import { InterfaceRegistrationTime } from '../interface/interface.registration.t
 import { CupoCheck } from "../Funciones/cupo.check";
 import { StoreRegistration } from "../Funciones/store.registration";
 import { AlertService } from "../Funciones/alert.service";
+import firebase from 'firebase/compat/app';
+
 
 interface User {
   cupo: number;
@@ -96,9 +98,9 @@ export class ManualRegistrationComponent implements OnInit {
     if (hora < horaLimite1) {
       return 'Puntual';
     } else if (hora <= horaLimite2) {
-      return 'Casi';
-    } else {
       return 'Retardo';
+    } else {
+      return 'Falta';
     }
   }
 }

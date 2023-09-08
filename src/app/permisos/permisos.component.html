@@ -4,12 +4,22 @@
     <div class="campos-container"> <!-- Agrega una clase para este div -->
       <ion-item>
         <ion-label position="floating">Cupo</ion-label>
-        <ion-input [(ngModel)]="cupo" type="text"></ion-input>
+        <ion-input [(ngModel)]="cupo" type="number"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="floating">Observaciones</ion-label>
         <ion-textarea [(ngModel)]="observaciones" rows="5"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Fecha de Permiso</ion-label>
+        <ion-datetime display-format="DD/MM/YYYY" [(ngModel)]="fechaPermiso"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Días de Permiso</ion-label>
+        <ion-input [(ngModel)]="diasPermiso" type="number"></ion-input>
       </ion-item>
     </div> <!-- Cierra el div de campos-container -->
 

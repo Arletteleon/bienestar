@@ -1,4 +1,10 @@
 <ion-content>
+  <ion-select name="datos" required [(ngModel)]="seleccion">
+    <ion-select-option value="Todos">Todos</ion-select-option>
+    <ion-select-option value="Puntual">Puntual</ion-select-option>
+    <ion-select-option value="Retardo">Retardos</ion-select-option>
+    <ion-select-option value="Falta">Faltas</ion-select-option>
+  </ion-select>
   <ion-item class="date-picker">
     <div class="contenedor">
     <div>

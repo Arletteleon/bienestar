@@ -45,12 +45,12 @@ const routes: Routes = [
     loadChildren: () => import('./signup/signup.module').then( m => m.SignupPageModule)
   },
   {
-    path: 'maps',
-    loadChildren: () => import('./maps/maps.module').then( m => m.MapsPageModule)
-  },
-  {
     path: 'permisos',
     loadChildren: () => import('./permisos/permisos.module').then( m => m.PermisosModule)
+  },
+  {
+    path: 'permisosReporte',
+    loadChildren: () => import('./reporte-permisos/reporte-permisos.module').then( m => m.ReportePermisosModule)
   },
   {
     path: 'pdf',

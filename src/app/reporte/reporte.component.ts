@@ -5,6 +5,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import firebase from 'firebase/compat/app';
 import { AlertService } from '../Funciones/alert.service';
 
+
 // @ts-ignore
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -23,6 +24,8 @@ export class ReporteComponent {
   data: MyDocument[] = [];
   fechaInicial: string = '';
   fechaFinal: string = '';
+  seleccion: string = "Todos";
+
 
   constructor(
     private firestore: AngularFirestore,
@@ -38,9 +41,7 @@ export class ReporteComponent {
     }
 
     try {
-      const collectionRef = this.firestore.collection<MyDocument>(
-        'registrationTime'
-      );
+      const collectionRef = this.firestore.collection<MyDocument>('registrationTime');
 
       // Obtener las fechas seleccionadas en el rango y establecer la hora en 00:00:00
       const startDate = new Date(this.fechaInicial);
@@ -48,10 +49,19 @@ export class ReporteComponent {
       const endDate = new Date(this.fechaFinal);
       endDate.setHours(23, 59, 59, 0);
 
+
+
       // Crear una referencia a la colección con las condiciones de consulta
-      const queryRef = collectionRef.ref
+      let queryRef = collectionRef.ref
+        .where('puntualidad', '==', this.seleccion)
         .where('time', '>=', startDate)
         .where('time', '<=', endDate);
+
+      if (this.seleccion == "Todos") {
+        queryRef = collectionRef.ref
+          .where('time', '>=', startDate)
+          .where('time', '<=', endDate);
+      }
 
       // Ejecutar la consulta
       const querySnapshot = await queryRef.get();

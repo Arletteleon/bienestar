@@ -35,7 +35,7 @@ export class SignupPage implements OnInit {
       this.dismiss();
     } else {
       // Muestra un mensaje de error en caso de credenciales incorrectas
-      await this.alertService.showAlert('Error', 'Credenciales incorrectas')
+      await this.alertService.showAlert('Error', 'Ingrese las credenciales correctas')
       console.log("Credenciales incorrectas. Usuario y contraseña deben ser 'admin'.");
     }
   }

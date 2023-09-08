@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MenuPrincipalPage } from './menu-principal.page';
 import { IonicModule} from "@ionic/angular";
-import {PopoverManualRegisterComponent} from "./popover-register-manual";
+import { PopoverManualRegisterComponent} from "./popover-register-manual";
+import { PopoverReportesComponent} from "./popover.reportes.component";
 
 const routes: Routes = [
   {
@@ -33,7 +34,10 @@ const routes: Routes = [
         path: 'modificar',
         loadChildren: () => import('../modificar-registros/modificar-registros.module').then(m =>m.ModificarRegistrosModule)
       },
-
+      {
+        path: 'reportePermisos',
+        loadChildren: () => import('../reporte-permisos/reporte-permisos.module').then(m =>m.ReportePermisosModule)
+      },
       {
         path: 'pdf',
         loadChildren: () => import('../reporte/reporte.module').then(m =>m.ReporteModule)
@@ -55,10 +59,12 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes),IonicModule],
   declarations: [
-    PopoverManualRegisterComponent
+    PopoverManualRegisterComponent,
+    PopoverReportesComponent
   ],
   entryComponents: [
-    PopoverManualRegisterComponent
+    PopoverManualRegisterComponent,
+    PopoverReportesComponent
   ]
 })
 export class MenuPrincipalPageRoutingModule {}

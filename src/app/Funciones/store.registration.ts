@@ -32,7 +32,7 @@ export class StoreRegistration {
     };
 
     try {
-      await this.firestore.collection('registrationTime').add(registration);
+      await this.firestore.collection('registrationTimeExit').add(registration);
     } catch (error) {
       throw new Error('Error al almacenar el registro');
     }
