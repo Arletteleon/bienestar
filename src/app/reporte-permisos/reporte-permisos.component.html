@@ -1,0 +1,29 @@
+<ion-content>
+  <div id="container" class="container">
+    <div class="campos-container">
+      <ion-item>
+        <ion-label position="floating">Cupo</ion-label>
+        <ion-input  [(ngModel)]="cupo" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item class="date-picker">
+        <div class="contenedor">
+          <div>
+            <ion-label class="green-label">Seleccionar Fecha Inicial</ion-label>
+            <ion-datetime  [(ngModel)]="fechaInicio" display-format="DD/MM/YYYY" class="calendarInicial"></ion-datetime>
+          </div>
+          <div>
+            <ion-label class="green-label">Seleccionar Fecha Final</ion-label>
+            <ion-datetime [(ngModel)]="fechaFinal" display-format="DD/MM/YYYY" class="calendarFinal"></ion-datetime>
+          </div>
+        </div>
+      </ion-item>
+    </div>
+
+    <ion-button (click)="generateReport()" class="generar-reporte">Generar Reporte</ion-button>
+  </div>
+
+  <div style="margin-top: 20px;">
+    <app-footer></app-footer>
+  </div>
+</ion-content>

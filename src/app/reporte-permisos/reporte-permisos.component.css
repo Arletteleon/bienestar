@@ -1,0 +1,48 @@
+ion-content{
+  text-align: center;
+}
+/* Estilo de la etiqueta con color verde */
+.green-label {
+  color: #255946;
+  text-align: center; /* Añadir este estilo para centrar el texto dentro de las etiquetas */
+  font-size: 16px; /* Aumentar el tamaño de la fuente de la etiqueta para dispositivos móviles */
+  margin-bottom: 8px; /* Aumentar el espaciado inferior entre la etiqueta y el selector */
+}
+
+.contenedor {
+  display: flex;
+  justify-content: center; /* Centrar verticalmente */
+  align-items: center; /* Centrar horizontalmente */
+  margin: 5vh auto; /* Aumentar el margen y centrar horizontalmente */
+  text-align: center; /* Añadir este estilo para centrar el contenido dentro de los divs */
+}
+
+ion-item {
+  text-align: center;
+  margin-bottom: 10px; /* Ajusta el valor según tus necesidades */
+}
+
+ion-datetime {
+  width: 100%;
+  max-width: 300px; /* Ajusta el valor según tus necesidades */
+  font-size: 14px;
+}
+
+.calendarInicial {
+  background-color: #dbfdf1;
+  margin: 30px;
+}
+
+/* Estilo del calendario con otro color */
+.calendarFinal {
+  background-color: #F2E8DC;
+  margin: 30px;
+}
+
+@media screen and (max-width: 600px) {
+  .date-picker > div {
+    flex-direction: column;
+    margin-right: 0; /* Eliminar espaciado entre los calendarios en pantallas pequeñas */
+    margin-bottom: 10px; /* Añadir espaciado inferior entre los calendarios en pantallas pequeñas */
+  }
+}
