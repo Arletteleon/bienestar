@@ -16,6 +16,11 @@ ion-content{
   margin: 5vh auto; /* Aumentar el margen y centrar horizontalmente */
   text-align: center; /* Añadir este estilo para centrar el contenido dentro de los divs */
 }
+.cupo{
+  margin: 20px auto;
+  width: 80%; /* Porcentaje del ancho de la pantalla */
+  max-width: 500px; /* Máximo ancho de 500px */
+}
 
 ion-item {
   text-align: center;

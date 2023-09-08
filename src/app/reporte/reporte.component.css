@@ -18,9 +18,11 @@ ion-content{
 }
 
 .datos {
-   margin: 30px auto;
-   width: 40%;
- }
+  margin: 20px auto;
+  width: 80%; /* Porcentaje del ancho de la pantalla */
+  max-width: 500px; /* Máximo ancho de 500px */
+  text-align: center;
+}
 
 
 ion-item {

@@ -49,7 +49,7 @@ export class MenuPrincipalPage {
     await this.dismissPopover();
   }
   async configuracion(ev:any){
-    this.router.navigate(['/']);
+    this.router.navigate(['']);
   }
   async logOut(ev:any){
     this.router.navigate(['/']);

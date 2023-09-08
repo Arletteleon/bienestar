@@ -22,6 +22,6 @@ ion-item {
     flex-direction: column; /* Cambiar a diseño de columna en pantallas pequeñas */
   }
   ion-item {
-    width: 100%; /* Ancho completo en pantallas pequeñas */
+    width: 90%; /* Ancho completo en pantallas pequeñas */
   }
 }
