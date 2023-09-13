@@ -1,7 +1,9 @@
 <ion-content>
   <div>
-    <ion-searchbar animated="true" placeholder="INGRESE EL CUPO" [(ngModel)]="cupo"></ion-searchbar>
+    <ion-searchbar animated="true" placeholder="INGRESE EL CUPO" [(ngModel)]="cupo"
+                   (ionInput)="onSearchbarInput($event)"></ion-searchbar>
   </div>
+  <ng-container *ngIf="showUserData">
   <ng-container *ngIf="users | async as users">
     <div *ngFor="let user of users">
       <ion-grid>
@@ -28,11 +30,22 @@
           <ion-col size="12" size-sm="6">
             <ion-item fill="outline">
               <ion-label position="floating">Estado</ion-label>
-              <ion-input type="text" [(ngModel)]="user.state"></ion-input>
+              <ion-input
+                type="text"
+                [(ngModel)]="user.state"
+                name="state"
+                inputmode="text"
+                (input)="onStateInputChange($event)"
+                required
+              ></ion-input>
             </ion-item>
             <ion-item fill="outline">
               <ion-label position="floating">Puesto</ion-label>
-              <ion-input type="text" [(ngModel)]="user.job"></ion-input>
+              <ion-input type="text"
+                         [(ngModel)]="user.job"
+                         name="job"
+                         inputmode="text"
+                         (input)="onJobInputChange($event)"></ion-input>
             </ion-item>
             <ion-item fill="outline" class="readonly-item">
               <ion-label position="floating">Contratación</ion-label>
@@ -50,7 +63,7 @@
       </ion-grid>
     </div>
   </ng-container>
-
+  </ng-container>
   <div class="button-container">
     <ion-button (click)="updateUser()">Actualizar Datos</ion-button>
     <ion-button (click)="searchUser()">Buscar Usuario</ion-button>

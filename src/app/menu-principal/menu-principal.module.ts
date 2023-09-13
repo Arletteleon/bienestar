@@ -16,7 +16,6 @@ import { ManualRegistrationExitModule} from "../manual-registration-exit/manual-
 import { ReporteModule} from "../reporte/reporte.module";
 import { ReportePermisosModule} from "../reporte-permisos/reporte-permisos.module";
 import { ConfiguracionModule} from "../configuracion/configuracion.module";
-
 @NgModule({
   imports: [
     CommonModule,

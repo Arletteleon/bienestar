@@ -35,6 +35,26 @@ export class ReportePermisosComponent {
     private alertService: AlertService
   ) {}
 
+
+  ionViewWillEnter() {
+    // Restablecer los valores de los campos aquí
+    this.cupo = '';
+    this.fechaInicio='';
+    this.fechaFinal='';
+  }
+  onInputValueChange(event: any) {
+    const inputElement = event.target as HTMLInputElement;
+    const inputValue = inputElement.value;
+
+    // Elimina caracteres no numéricos utilizando una expresión regular
+    const numericValue = inputValue.replace(/[^0-9]/g, '');
+
+    // Actualiza el valor del ion-input
+    inputElement.value = numericValue;
+
+    // Actualiza el modelo (ngModel) con el valor numérico
+    this.cupo = numericValue;
+  }
   async generateReport() {
     this.data = [];
 

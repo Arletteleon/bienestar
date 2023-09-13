@@ -20,16 +20,18 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['menu-principal.page.css']
 })
 export class PopoverManualRegisterComponent {
-  constructor(private popoverController: PopoverController, public navController: NavController) {}
+  constructor(private popoverController: PopoverController, public navController: NavController ) {}
 
   async navigateToEntryTime() {
     await this.navController.navigateForward('/menu_principal/ManualRegistration');
     await this.dismissPopover();
+    await this.popoverController.dismiss()
   }
 
   async navigateToDepartureTime() {
     await this.navController.navigateForward('/menu_principal/ManualRegistrationExit');
     await this.dismissPopover();
+    await this.popoverController.dismiss()
   }
 
   async dismissPopover() {

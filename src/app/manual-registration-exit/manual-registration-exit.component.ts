@@ -45,6 +45,9 @@ export class ManualRegistrationExitComponent  implements OnInit {
     this.usersCollection = this.firestore.collection<User>('users');
   }
 
+  ionViewWillEnter() {
+    this.inputValue='';
+  }
   async registerManual() {
     this.user.cupo = parseInt(this.inputValue, 10);
 
@@ -72,7 +75,7 @@ export class ManualRegistrationExitComponent  implements OnInit {
   async storeRegistration(cupo: number) {
     try {
       await this.registration.storeRegistrationExit(cupo);
-      this.showAlert('Éxito', 'Entrada Registrada', 'success');
+      this.showAlert('Éxito', 'Salida Registrada', 'success');
     } catch (error) {
       this.showAlert('Error', 'Error al almacenar el registro', 'error');
     }

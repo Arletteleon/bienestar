@@ -35,6 +35,24 @@ export class ManualRegistrationComponent implements OnInit {
     private registration: StoreRegistration
   ) {}
 
+  ionViewWillEnter() {
+    this.inputValue='';
+  }
+  onInputValueChange(event: any) {
+    const inputElement = event.target as HTMLInputElement;
+    const inputValue = inputElement.value;
+
+    // Elimina caracteres no numéricos utilizando una expresión regular
+    const numericValue = inputValue.replace(/[^0-9]/g, '');
+
+    // Actualiza el valor del ion-input
+    inputElement.value = numericValue;
+
+    // Actualiza el modelo (ngModel) con el valor numérico
+    this.inputValue = numericValue;
+  }
+
+
   ngOnInit() {
     moment.locale('es');
     setInterval(() => {

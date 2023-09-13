@@ -1,16 +1,27 @@
-#footer{
+#footer {
   --background: #16372C;
   --color: white;
   --min-height: 150px;
-  --padding-start: 150px;
+  --padding-start: 10px;
   --padding-top: 20px;
 }
-#img_footer{
+
+#img_footer {
   width: 300px;
+  align-self: center; /* Centra verticalmente la imagen en su div */
+  margin-right: 20px; /* Agrega espacio entre la imagen y el texto */
 }
-#div{
+
+#div {
   display: flex;
+  align-items: center; /* Centra verticalmente el contenido del div */
 }
-#address{
+
+#address {
   padding: 30px;
+}
+
+/* Estilo adicional para los párrafos dentro de #address */
+#address p {
+  margin: 0; /* Elimina el margen predeterminado de los párrafos */
 }

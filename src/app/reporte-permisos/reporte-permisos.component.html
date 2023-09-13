@@ -3,7 +3,10 @@
     <div class="campos-container">
       <ion-item fill="outline" class="cupo">
         <ion-label position="floating">Cupo</ion-label>
-        <ion-input  [(ngModel)]="cupo" type="text"></ion-input>
+        <ion-input  type="text" name="cupo"
+                    placeholder="Enter text"
+                    [(ngModel)]="cupo"
+                    (ionInput)="onInputValueChange($event)"></ion-input>
       </ion-item>
 
       <ion-item class="date-picker" >

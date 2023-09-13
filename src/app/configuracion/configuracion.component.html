@@ -1,3 +1,26 @@
-<p>
-  configuracion works!
-</p>
+<ion-content>
+  <ion-item>
+    <ion-label class="labelData">
+      Datos del administrador
+    </ion-label>
+  </ion-item>
+  <form (ngSubmit)="updatePassword()">
+
+    <ion-item fill="outline">
+      <ion-label position="floating">Contraseña anterior</ion-label>
+      <ion-input type="password" [(ngModel)]="contrasena" name="contrasena" placeholder="Contraseña anterior"></ion-input>
+    </ion-item>
+    <ion-item fill="outline">
+      <ion-label position="floating">Nueva Contraseña</ion-label>
+      <ion-input type="password" [(ngModel)]="contrasenaNueva" name="contrasenaNueva" placeholder="Nueva Contraseña"></ion-input>
+    </ion-item>
+    <ion-item fill="outline">
+      <ion-label position="floating">Repita la nueva contraseña</ion-label>
+      <ion-input type="password" [(ngModel)]="contrasenaNuevaDos" name="contrasenaNuevaDos" placeholder="Repita la nueva contraseña"></ion-input>
+    </ion-item>
+    <ion-button type="submit">Actualizar Contraseña</ion-button>
+  </form>
+</ion-content>
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

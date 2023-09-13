@@ -10,22 +10,41 @@
         <ion-col size="12" size-sm="6">
           <ion-item fill="outline">
             <ion-label position="floating">Nombre Completo</ion-label>
-            <ion-input type="text" [(ngModel)]="user.name" name="name" placeholder="Enter text" ></ion-input>
+            <ion-input type="text"
+                       [(ngModel)]="user.name"
+                       name="name"
+                       placeholder="Agregar información"
+                       inputmode="text"
+                       (input)="onNameInputChange($event)"></ion-input>
           </ion-item>
 
           <ion-item fill="outline">
             <ion-label position="floating">CUPO</ion-label>
-            <ion-input type="number" [(ngModel)]="user.cupo" name="cupo" placeholder="Enter text" ></ion-input>
+            <ion-input type="number"
+                       [(ngModel)]="user.cupo"
+                       name="cupo"
+                       placeholder="Agregar información"
+            ></ion-input>
           </ion-item>
 
           <ion-item fill="outline">
             <ion-label position="floating">RFC</ion-label>
-            <ion-input type="text" [(ngModel)]="user.rfc" name="rfc" placeholder="Enter text" ></ion-input>
+            <ion-input type="text"
+                       [(ngModel)]="user.rfc"
+                       name="rfc"
+                       placeholder="Agregar información"
+                       inputmode="text"
+                       (input)="onRfcInputChange($event)"></ion-input>
           </ion-item>
 
           <ion-item fill="outline">
             <ion-label position="floating">CURP</ion-label>
-            <ion-input type="text" [(ngModel)]="user.curp" name="curp" placeholder="Enter text" ></ion-input>
+            <ion-input type="text"
+                       [(ngModel)]="user.curp"
+                       name="curp"
+                       placeholder="Agregar información"
+                       inputmode="text"
+                       (input)="onCurpInputChange($event)"></ion-input>
           </ion-item>
 
 
@@ -34,17 +53,27 @@
 
           <ion-item fill="outline">
             <ion-label position="floating">Estado</ion-label>
-            <ion-input type="text" [(ngModel)]="user.state" name="state" placeholder="Enter text" ></ion-input>
+            <ion-input type="text"
+                       [(ngModel)]="user.state"
+                       name="state"
+                       placeholder="Agregar información"
+                       inputmode="text"
+                       (input)="onStateInputChange($event)"></ion-input>
           </ion-item>
 
           <ion-item fill="outline">
             <ion-label position="floating">Puesto</ion-label>
-            <ion-input type="text" [(ngModel)]="user.job" name="job" placeholder="Enter text" ></ion-input>
+            <ion-input type="text"
+                       [(ngModel)]="user.job"
+                       name="job"
+                       placeholder="Agregar información"
+                       inputmode="text"
+                       (input)="onJobInputChange($event)"></ion-input>
           </ion-item>
 
           <ion-item fill="outline">
             <ion-label position="floating">Contratación</ion-label>
-            <ion-select [(ngModel)]="user.hiring" name="hiring" required>
+            <ion-select [(ngModel)]="user.hiring" name="hiring">
               <ion-select-option value="Estructura">ESTRUCTURA</ion-select-option>
               <ion-select-option value="HCP">HCP - PLANTILLA COMPLEMENTARIA PERMANENTE</ion-select-option>
             </ion-select>
@@ -63,4 +92,3 @@
 
   <app-footer></app-footer>
 </ion-content>
-
