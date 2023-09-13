@@ -1,51 +1,79 @@
-.container{
+.container {
   text-align: center;
-  margin-top: 20px; /* Aumento el espaciado superior en dispositivos móviles */
+  margin-top: 20px;
+  align-items: center;
 }
 
 .imagen-cargada {
   display: block;
   margin: 0 auto 40px;
-  max-width: 100%; /* Añade esto para que la imagen se ajuste al contenedor */
-  max-height: 300px; /* Establece la altura máxima deseada para las imágenes */
-
+  max-width: 100%;
+  max-height: 300px;
 }
 
 .campos-container {
-  width: 40%; /* Ajusta el ancho según tus necesidades */
-  margin: auto; /* Centra horizontalmente */
+  width: 60%;
+  margin: auto;
 }
 
 /* Define el ancho máximo deseado para los botones en ambos dispositivos */
 .seleccionar-archivo,
 ion-button {
-  width: 100%;
-  max-width: 90%; /* Reduzco el ancho máximo para dejar más espacio en la versión web */
-  margin: 0 auto;
+  width: 30%;
+  max-width: 90%;
+  margin: 20px auto;
+  display: block; /* Cambia la propiedad display a block para que estén uno debajo del otro */
 }
 
-/* Ajusta el ancho de campos-container para dispositivos móviles */
-.campos-container {
-  width: 90%; /* Amplío el ancho para dispositivos móviles */
-  margin: 0 auto;
+ion-item {
+  margin: 10px auto;
+  width: 80%; /* Cambia el ancho de los ion-item al 80% en dispositivos móviles */
 }
 
-/* Añade espaciado superior entre los botones y reduce el margen superior en dispositivos móviles */
-.botones {
+.date-picker {
   text-align: center;
-  margin-top: 20px; /* Aumento el espaciado superior en dispositivos móviles */
+  align-items: center;
+  display: flex;
+  margin-bottom: 40px;
+}
+
+.date-picker-label {
+  margin-bottom: 30px;
 }
 
 /* Media query para pantallas pequeñas (móviles) */
 @media screen and (max-width: 600px) {
+  .container {
+    text-align: center;
+    margin-top: 20px;
+    align-items: center;
+  }
+
+  .campos-container {
+    width: 90%; /* Amplío el ancho para dispositivos móviles */
+    margin: 0 auto;
+  }
+
+  /* Ajusta el ancho máximo de los botones en dispositivos móviles */
+  .seleccionar-archivo,
+  ion-button {
+    width: 100%; /* Cambia el ancho de los botones al 100% en dispositivos móviles */
+    max-width: 90%;
+  }
+
+  ion-item {
+    width: 90%; /* Cambia el ancho de los ion-item al 90% en dispositivos móviles */
+    margin: 10px auto;
+  }
+
   .date-picker > div {
-    flex-direction: column;
-    margin-right: 0;
-    margin-bottom: 10px;
+    flex-direction: row;
+    margin-right: 10px;
+    margin-bottom: 0;
   }
 
   /* Ajusta el margen superior para el pie de página en dispositivos móviles */
   .app-footer {
-    margin-top: 20px; /* Aumento el margen superior en dispositivos móviles */
+    margin-top: 20px;
   }
 }

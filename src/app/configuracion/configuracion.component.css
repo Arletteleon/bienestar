@@ -1,0 +1,28 @@
+
+ion-content{
+  text-align: center;
+}
+
+
+ion-item {
+  margin: 20px;
+  width: 80%; /* Porcentaje del ancho de la pantalla */
+  max-width: 500px; /* Máximo ancho de 500px */
+}
+#columnas{
+  display: flex; justify-content: center;
+}
+
+#labelData{
+  padding-bottom: 90px;
+}
+
+
+@media screen and (max-width: 600px) {
+  #columnas {
+    flex-direction: column; /* Cambiar a diseño de columna en pantallas pequeñas */
+  }
+  ion-item {
+    width: 90%; /* Ancho completo en pantallas pequeñas */
+  }
+}

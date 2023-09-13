@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable, of } from 'rxjs';
 import { InterfaceRegister } from '../interface/interface.register';
+import { AlertService} from "../Funciones/alert.service";
 
 @Component({
   selector: 'app-modificar-registros',
@@ -23,14 +24,42 @@ export class ModificarRegistrosComponent {
     dateAdmission: new Date(),
   };
   userId:string='';
+  showUserData: boolean = false;
 
   // Mantén una copia separada para los datos del usuario actual
   userCopy: InterfaceRegister | undefined;
 
-  constructor(private firestore: AngularFirestore) {}
+  constructor(private firestore: AngularFirestore,
+              private alertService:AlertService) {}
+
+  ionViewWillEnter() {
+    this.cupo=''
+    this.showUserData = false; // Establece la variable en false al cargar la página
+  }
+
+  onStateInputChange(event: any) {
+    const inputValue = event.target.value;
+    this.user.state = inputValue.toUpperCase();
+  }
+  onJobInputChange(event: any) {
+    const inputValue = event.target.value;
+    this.user.job = inputValue.toUpperCase();
+  }
+  onSearchbarInput(event: any) {
+    const inputElement = event.target as HTMLInputElement;
+    const inputValue = inputElement.value;
+
+    // Elimina caracteres no numéricos utilizando una expresión regular
+    const numericValue = inputValue.replace(/[^0-9]/g, '');
+
+    // Actualiza el valor del ion-searchbar
+    inputElement.value = numericValue;
+
+    // Actualiza el modelo (ngModel) con el valor numérico
+    this.cupo = numericValue;
+  }
 
   searchUser() {
-    console.log(this.cupo);
     this.cupoActualizar = this.cupo;
     this.firestore
       .collection<InterfaceRegister>('users', (ref) =>
@@ -42,6 +71,10 @@ export class ModificarRegistrosComponent {
           // Si se encontraron documentos con el cupo especificado, toma el primer documento
           const doc = querySnapshot.docs[0];
           this.userId = doc.id; // Obtiene el ID del documento
+          this.showUserData = true; // Mostrar elementos de información
+        } else {
+          this.cupo = '';
+          this.showUserData = false; // Ocultar elementos de información si no se encontró un usuario
         }
       });
 
@@ -55,12 +88,15 @@ export class ModificarRegistrosComponent {
           this.user = users[0]; // Actualiza la variable user con los datos del usuario encontrado
           this.userCopy = { ...this.user }; // Haz una copia separada para evitar sobrescribir los datos después
           this.users = of(users);
+          this.cupo = '';
         } else {
-          // Si no se encuentra el usuario, puedes manejarlo aquí
-          console.log('Usuario no encontrado.');
+          this.alertService.showAlert('Error', 'Usuario no encontrado.')
+          this.cupo = '';
+          this.showUserData = false; // Ocultar elementos de información si no se encontró un usuario
         }
       });
   }
+
 
   updateUser() {
     // Actualiza los datos del usuario en la base de datos
@@ -68,11 +104,12 @@ export class ModificarRegistrosComponent {
     userRef
       .update(this.user)
       .then(() => {
-        console.log('Datos actualizados exitosamente.');
+        this.alertService.showAlert('Exito','Datos actulizados')
+        this.showUserData = false; // Establece la variable en false al cargar la página
         // No es necesario sobrescribir this.user después de la actualización
       })
       .catch((error) => {
-        console.error('Error al actualizar datos:', error);
+        this.alertService.showAlert('Error','Error al actulizar los datos')
       });
   }
 }

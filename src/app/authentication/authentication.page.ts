@@ -22,7 +22,7 @@ interface User {
   styleUrls: ['./authentication.page.scss'],
 })
 export class AuthenticationPage implements OnInit {
-  @ViewChild('map', { static: true })
+  @ViewChild('map', {static: true})
   mapElement!: ElementRef;
   map: any;
   circle: any; // Variable para almacenar el círculo
@@ -45,7 +45,8 @@ export class AuthenticationPage implements OnInit {
     private registration: StoreRegistration,
     private alertService: AlertService,
     private puntualidadService: PuntualidadService,
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.initMap();
@@ -99,15 +100,12 @@ export class AuthenticationPage implements OnInit {
         (error) => {
           console.log('Error al obtener la ubicación:', error);
         },
-        { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
+        {enableHighAccuracy: true, timeout: 5000, maximumAge: 0}
       );
     } else {
       alert('Geolocation is not supported by this browser.');
     }
   }
-
-
-
 
 
   updateDateTime() {
@@ -157,21 +155,20 @@ export class AuthenticationPage implements OnInit {
 
                   await this.registration.storeRegistration(cupo, estadoPuntualidad);
                   this.alertService.showAlert('Éxito', 'Entrada Registrada');
-                }
-                else{
+                } else {
                   this.alertService.showAlert('Error', 'Debe estar cerca de las oficinas');
                 }
               },
               (error) => {
                 this.alertService.showAlert('Error', 'Error al obtener la ubicación');
               },
-              { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
+              {enableHighAccuracy: true, timeout: 5000, maximumAge: 0}
             );
           } else {
             this.alertService.showAlert('Error', 'Geolocation is not supported by this browser.');
           }
         } else {
-          this.alertService.showAlert('Error', 'El CUPO no está registrado');
+          this.alertService.showAlert('Error', 'CUPO no encontrado');
         }
       } catch (error) {
         this.alertService.showAlert('Error', 'Error al consultar la base de datos');
@@ -182,14 +179,22 @@ export class AuthenticationPage implements OnInit {
   }
 
 
-
   async registrationExit() {
     this.user.cupo = parseInt(this.inputValue, 10);
-
-    if (this.usersCollection) {
-      await this.cupoCheck.checkCupoExistence(this.user.cupo);
+    try {
+      if (this.usersCollection) {
+        const exists=await this.cupoCheck.checkCupoExistence(this.user.cupo);
+        if (exists) {
+          await this.registration.storeRegistrationExit(this.user.cupo);
+          this.alertService.showAlert('Éxito', 'Salida Registrada');
+        }else {
+          this.alertService.showAlert('Error', 'CUPO no encontrado');
+        }
+      }
+    } catch (error) {
+      this.alertService.showAlert('Error', 'Error al almacenar el registro');
     }
+
+
   }
-
-
 }

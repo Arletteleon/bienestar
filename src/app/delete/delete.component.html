@@ -1,7 +1,8 @@
 <ion-content>
   <div>
-    <ion-searchbar animated="true" placeholder="INGRESE EL CUPO" [(ngModel)]="cupo"></ion-searchbar>
+    <ion-searchbar animated="true" placeholder="INGRESE EL CUPO" [(ngModel)]="cupo" (ionInput)="onSearchbarInput($event)"></ion-searchbar>
   </div>
+  <ng-container *ngIf="showUserData">
   <ng-container *ngIf="users | async as users">
     <div *ngFor="let user of users">
       <ion-grid>
@@ -24,12 +25,12 @@
               <ion-label position="floating">CURP</ion-label>
               <ion-input type="text" [(ngModel)]="user.curp" readonly></ion-input>
             </ion-item>
+          </ion-col>
+          <ion-col size="12" size-sm="6">
             <ion-item fill="outline">
               <ion-label position="floating">Estado</ion-label>
               <ion-input type="text" [(ngModel)]="user.state" readonly></ion-input>
             </ion-item>
-          </ion-col>
-          <ion-col size="12" size-sm="6">
             <ion-item fill="outline">
               <ion-label position="floating">Puesto</ion-label>
               <ion-input type="text" [(ngModel)]="user.job" readonly></ion-input>
@@ -51,6 +52,7 @@
         </ion-row>
       </ion-grid>
     </div>
+  </ng-container>
   </ng-container>
 
   <div class="button-container">

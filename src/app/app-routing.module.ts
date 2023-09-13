@@ -37,10 +37,6 @@ const routes: Routes = [
     loadChildren: () => import('./footer/footer.module').then( m => m.FooterPageModule)
   },
   {
-    path: 'welcome',
-    loadChildren: () => import('./welcome/welcome.module').then( m => m.WelcomePageModule)
-  },
-  {
     path: 'signup',
     loadChildren: () => import('./signup/signup.module').then( m => m.SignupPageModule)
   },
@@ -56,6 +52,7 @@ const routes: Routes = [
     path: 'pdf',
     loadChildren: () => import('./reporte/reporte.module').then( m => m.ReporteModule)
   },
+
 
 
 ];

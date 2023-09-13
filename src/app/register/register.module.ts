@@ -8,13 +8,16 @@ import { RegisterPageRoutingModule } from './register-routing.module';
 
 import { RegisterPage } from './register.page';
 import {FooterPageModule} from "../footer/footer.module";
+import { HeaderPageModule} from "../header/header.module";
+
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
     RegisterPageRoutingModule,
-    FooterPageModule
+    FooterPageModule,
+    HeaderPageModule,
   ],
   declarations: [RegisterPage]
 })
