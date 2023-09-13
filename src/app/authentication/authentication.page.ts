@@ -1,17 +1,21 @@
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import {Router} from "@angular/router";
+import { Router } from "@angular/router";
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
-import { InterfaceRegistrationTime } from '../interface/interface.registration.time';
-import { AlertController } from '@ionic/angular';
 import { CupoCheck } from "../Funciones/cupo.check";
-import { StoreRegistration} from "../Funciones/store.registration";
-import {InterfaceRegistrationTimeExit} from "../interface/interface.registration.time.exit";
+import { StoreRegistration } from "../Funciones/store.registration";
+import * as moment from 'moment';
+import { InterfaceRegistrationTime } from '../interface/interface.registration.time';
+import { AlertService } from "../Funciones/alert.service";
+import { PuntualidadService} from "../Funciones/puntualidad.service";
+
+
 declare var google: any;
 
 interface User {
   cupo: number;
 }
+
 @Component({
   selector: 'app-authentication',
   templateUrl: './authentication.page.html',
@@ -27,22 +31,29 @@ export class AuthenticationPage implements OnInit {
   currentDate: string | undefined;
   date: string | undefined;
   inputValue: string = '';
-  user: InterfaceRegistrationTimeExit = {
+  user: InterfaceRegistrationTime = {
     cupo: 0,
     time: new Date(),
+    puntualidad: "",
   };
+
   constructor(
     public modalCtrl: ModalController,
     private router: Router,
     private firestore: AngularFirestore,
-    private alertController: AlertController,
     private cupoCheck: CupoCheck,
-    private registration: StoreRegistration
-
+    private registration: StoreRegistration,
+    private alertService: AlertService,
+    private puntualidadService: PuntualidadService,
   ) { }
 
   ngOnInit() {
+    this.initMap();
     this.usersCollection = this.firestore.collection<User>('users');
+    this.updateDateTime();
+  }
+
+  initMap() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -94,94 +105,91 @@ export class AuthenticationPage implements OnInit {
       alert('Geolocation is not supported by this browser.');
     }
   }
-  checkLocation() {
-    let valor = false; // Inicializa valor como false
 
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const userLocation = new google.maps.LatLng(
-            position.coords.latitude,
-            position.coords.longitude
-          );
-          const isLocationWithinCircle =
-            google.maps.geometry.spherical.computeDistanceBetween(
-              userLocation,
-              this.circle.getCenter()
-            ) <= this.circle.getRadius();
 
-          console.log('Is location within circle:', isLocationWithinCircle);
-          valor = isLocationWithinCircle; // Establece valor en función del resultado
-        },
-        (error) => {
-          console.log('Error al obtener la ubicación:', error);
-        },
-        { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
-      );
-    } else {
-      alert('Geolocation is not supported by this browser.');
-    }
 
-    return valor;
+
+
+  updateDateTime() {
+    moment.locale('es');
+    setInterval(() => {
+      const now = moment();
+      this.currentDate = now.format('HH:mm:ss');
+      this.date = now.format('dddd, D [de] MMMM [de] YYYY');
+    }, 1000);
   }
+
 
   async dismiss() {
     await this.modalCtrl.dismiss();
   }
 
-  login(){
-    this.router.navigate(['/maps'])
-    this.dismiss()
+  login() {
+    this.router.navigate(['/maps']);
+    this.dismiss();
   }
+
   async registrationEntry() {
+    let isLocationValid: boolean;
+    const cupo = parseInt(this.inputValue, 10);
+
+    if (this.usersCollection) {
+      try {
+        const exists = await this.cupoCheck.checkCupoExistence(cupo);
+
+        if (exists) {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+              async (position) => {
+                const userLocation = new google.maps.LatLng(
+                  position.coords.latitude,
+                  position.coords.longitude
+                );
+                isLocationValid =
+                  google.maps.geometry.spherical.computeDistanceBetween(
+                    userLocation,
+                    this.circle.getCenter()
+                  ) <= this.circle.getRadius();
+                console.log(isLocationValid)
+                if (isLocationValid) {
+                  const horaRegistro = new Date();
+                  const estadoPuntualidad = this.puntualidadService.calcularEstadoPuntualidad(horaRegistro);
+
+                  await this.registration.storeRegistration(cupo, estadoPuntualidad);
+                  this.alertService.showAlert('Éxito', 'Entrada Registrada');
+                }
+                else{
+                  this.alertService.showAlert('Error', 'Debe estar cerca de las oficinas');
+                }
+              },
+              (error) => {
+                this.alertService.showAlert('Error', 'Error al obtener la ubicación');
+              },
+              { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
+            );
+          } else {
+            this.alertService.showAlert('Error', 'Geolocation is not supported by this browser.');
+          }
+        } else {
+          this.alertService.showAlert('Error', 'El CUPO no está registrado');
+        }
+      } catch (error) {
+        this.alertService.showAlert('Error', 'Error al consultar la base de datos');
+      }
+    } else {
+      this.alertService.showAlert('Error', 'No se pudo conectar a la base de datos');
+    }
+  }
+
+
+
+  async registrationExit() {
     this.user.cupo = parseInt(this.inputValue, 10);
 
     if (this.usersCollection) {
-      await this.checkCupoExistence(this.user.cupo);
-    }
-  }
-  async registrationExit(){
-    this.user.cupo = parseInt(this.inputValue, 10);
-
-    if (this.usersCollection) {
-      await this.checkCupoExistence(this.user.cupo);
+      await this.cupoCheck.checkCupoExistence(this.user.cupo);
     }
   }
 
-  async checkCupoExistence(cupo: number) {
-    try {
-      const exists = await this.cupoCheck.checkCupoExistence(cupo);
-
-      if (exists) {
-        await this.storeRegistration(cupo);
-      } else {
-        this.showAlert('Error', 'El CUPO no está registrado', 'error');
-      }
-    } catch (error) {
-      this.showAlert('Error', 'Error al consultar la base de datos', 'error');
-    }
-  }
-  async storeRegistration(cupo: number) {
-    try {
-      if(this.checkLocation()) {
-        await this.registration.storeRegistrationExit(cupo);
-        this.showAlert('Éxito', 'Entrada Registrada', 'success');
-      }else {
-        this.showAlert('Éxito', 'Debe estar cerca de las oficinas', 'success');
-      }
-    } catch (error) {
-      this.showAlert('Error', 'Error al almacenar el registro', 'error');
-    }
-  }
-
-  async showAlert(header: string, message: string, color: string) {
-    const alert = await this.alertController.create({
-      header: header,
-      message: message,
-      buttons: ['OK'],
-      cssClass:`custom-alert ${color}`,
-    });
-    await alert.present();
-  }
 
 }

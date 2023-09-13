@@ -43,6 +43,10 @@ const routes: Routes = [
         loadChildren: () => import('../reporte/reporte.module').then(m =>m.ReporteModule)
       },
       {
+        path: 'configuracion',
+        loadChildren: () => import('../configuracion/configuracion.module').then(m =>m.ConfiguracionModule)
+      },
+      {
         path: '',
         redirectTo: '/menu_principal/register',
         pathMatch: 'full'

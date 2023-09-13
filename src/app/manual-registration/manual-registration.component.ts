@@ -90,10 +90,10 @@ export class ManualRegistrationComponent implements OnInit {
 
   private calcularEstadoPuntualidad(hora: Date): string {
     const horaLimite1 = new Date();
-    horaLimite1.setHours(9, 0, 0, 0);
+    horaLimite1.setHours(9, 16, 0, 0);
 
     const horaLimite2 = new Date();
-    horaLimite2.setHours(9, 15, 0, 0);
+    horaLimite2.setHours(9, 30, 0, 0);
 
     if (hora < horaLimite1) {
       return 'Puntual';

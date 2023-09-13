@@ -1,23 +1,6 @@
-ion-content {
+.container{
   text-align: center;
-  width: 100%;
-  height: 100%;
-}
-
-ion-item {
-  margin: 2% 5%;
-  width: 90%;
-}
-
-#contenedor {
-  width: 40%;
-  height: 60vh;
-  margin: 0 auto;
-}
-
-.container {
-  text-align: center;
-  margin: 20px;
+  margin-top: 20px; /* Aumento el espaciado superior en dispositivos móviles */
 }
 
 .imagen-cargada {
@@ -30,19 +13,39 @@ ion-item {
 
 .campos-container {
   width: 40%; /* Ajusta el ancho según tus necesidades */
-  margin: 0 auto; /* Centra horizontalmente */
+  margin: auto; /* Centra horizontalmente */
 }
 
-
+/* Define el ancho máximo deseado para los botones en ambos dispositivos */
 .seleccionar-archivo,
 ion-button {
-  /* Ajusta el tamaño del botón para que sea igual al de "Subir archivo" */
   width: 100%;
-  max-width: 200px; /* Ajusta el ancho máximo deseado para los botones */
-  margin: 0 auto; /* Centra los botones horizontalmente */
+  max-width: 90%; /* Reduzco el ancho máximo para dejar más espacio en la versión web */
+  margin: 0 auto;
 }
 
+/* Ajusta el ancho de campos-container para dispositivos móviles */
+.campos-container {
+  width: 90%; /* Amplío el ancho para dispositivos móviles */
+  margin: 0 auto;
+}
+
+/* Añade espaciado superior entre los botones y reduce el margen superior en dispositivos móviles */
 .botones {
   text-align: center;
-  margin-top: 10px;
+  margin-top: 20px; /* Aumento el espaciado superior en dispositivos móviles */
+}
+
+/* Media query para pantallas pequeñas (móviles) */
+@media screen and (max-width: 600px) {
+  .date-picker > div {
+    flex-direction: column;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  /* Ajusta el margen superior para el pie de página en dispositivos móviles */
+  .app-footer {
+    margin-top: 20px; /* Aumento el margen superior en dispositivos móviles */
+  }
 }
