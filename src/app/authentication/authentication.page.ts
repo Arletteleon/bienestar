@@ -73,8 +73,8 @@ export class AuthenticationPage implements OnInit {
           );
 // 18.0092095,-94.5508816
           //17.06404624693992, -96.71897578134413
-          const latitude = 18.0092095;
-          const longitude = -94.5508816;
+          const latitude = 17.06404624693992;
+          const longitude = -96.71897578134413;
           const circleOptions = {
             strokeColor: '#48ff00', // Color del borde del círculo
             strokeOpacity: 0.8, // Opacidad del borde (valor entre 0 y 1)
