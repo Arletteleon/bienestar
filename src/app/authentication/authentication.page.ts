@@ -1,13 +1,13 @@
-import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-import { Router } from "@angular/router";
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
-import { CupoCheck } from "../Funciones/cupo.check";
-import { StoreRegistration } from "../Funciones/store.registration";
+import {Component, ViewChild, ElementRef, OnInit} from '@angular/core';
+import {ModalController} from '@ionic/angular';
+import {Router} from "@angular/router";
+import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/compat/firestore';
+import {CupoCheck} from "../Funciones/cupo.check";
+import {StoreRegistration} from "../Funciones/store.registration";
 import * as moment from 'moment';
-import { InterfaceRegistrationTime } from '../interface/interface.registration.time';
-import { AlertService } from "../Funciones/alert.service";
-import { PuntualidadService} from "../Funciones/puntualidad.service";
+import {InterfaceRegistrationTime} from '../interface/interface.registration.time';
+import {AlertService} from "../Funciones/alert.service";
+import {PuntualidadService} from "../Funciones/puntualidad.service";
 
 
 declare var google: any;
@@ -71,9 +71,10 @@ export class AuthenticationPage implements OnInit {
             this.mapElement.nativeElement,
             mapOptions
           );
-
-          const latitude = 17.06404624693992;
-          const longitude = -96.71897578134413;
+// 18.0092095,-94.5508816
+          //17.06404624693992, -96.71897578134413
+          const latitude = 18.0092095;
+          const longitude = -94.5508816;
           const circleOptions = {
             strokeColor: '#48ff00', // Color del borde del círculo
             strokeOpacity: 0.8, // Opacidad del borde (valor entre 0 y 1)
@@ -143,20 +144,28 @@ export class AuthenticationPage implements OnInit {
                   position.coords.latitude,
                   position.coords.longitude
                 );
-                isLocationValid =
-                  google.maps.geometry.spherical.computeDistanceBetween(
-                    userLocation,
-                    this.circle.getCenter()
-                  ) <= this.circle.getRadius();
-                console.log(isLocationValid)
-                if (isLocationValid) {
-                  const horaRegistro = new Date();
-                  const estadoPuntualidad = this.puntualidadService.calcularEstadoPuntualidad(horaRegistro);
 
-                  await this.registration.storeRegistration(cupo, estadoPuntualidad);
-                  this.alertService.showAlert('Éxito', 'Entrada Registrada');
-                } else {
-                  this.alertService.showAlert('Error', 'Debe estar cerca de las oficinas');
+                if (userLocation) {
+                  isLocationValid =
+                    google.maps.geometry.spherical.computeDistanceBetween(
+                      userLocation,
+                      this.circle.getCenter()
+                    ) <= this.circle.getRadius();
+                  console.log(isLocationValid)
+
+                  if (isLocationValid) {
+                    const horaRegistro = new Date();
+                    const estadoPuntualidad = this.puntualidadService.calcularEstadoPuntualidad(horaRegistro);
+                    await this.registration.storeRegistration(cupo, estadoPuntualidad);
+                    window.location.href = 'https://login-face-bienestar.web.app/deteccion';
+
+                    // this.alertService.showAlert('Éxito', 'Entrada Registrada');
+
+                    //this.showCamera = true;
+
+                  } else {
+                    this.alertService.showAlert('Error', 'Debe estar cerca de las oficinas');
+                  }
                 }
               },
               (error) => {
@@ -183,11 +192,11 @@ export class AuthenticationPage implements OnInit {
     this.user.cupo = parseInt(this.inputValue, 10);
     try {
       if (this.usersCollection) {
-        const exists=await this.cupoCheck.checkCupoExistence(this.user.cupo);
+        const exists = await this.cupoCheck.checkCupoExistence(this.user.cupo);
         if (exists) {
           await this.registration.storeRegistrationExit(this.user.cupo);
           this.alertService.showAlert('Éxito', 'Salida Registrada');
-        }else {
+        } else {
           this.alertService.showAlert('Error', 'CUPO no encontrado');
         }
       }
