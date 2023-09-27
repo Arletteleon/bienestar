@@ -157,7 +157,7 @@ export class AuthenticationPage implements OnInit {
                     const horaRegistro = new Date();
                     const estadoPuntualidad = this.puntualidadService.calcularEstadoPuntualidad(horaRegistro);
                     await this.registration.storeRegistration(cupo, estadoPuntualidad);
-                    window.location.href = 'https://login-face-bienestar.web.app/deteccion';
+                    window.location.href = 'https://login-face-bienestar.web.app/identificar';
 
                     // this.alertService.showAlert('Éxito', 'Entrada Registrada');
 
